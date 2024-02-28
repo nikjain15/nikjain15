@@ -1,6 +1,6 @@
 # Nikhil Jain (Nik)
 ## 👋 Introduction
-Hello! I'm Nik, a serial technology entrepreneur, have built ventures across cleantech, edtech, and autotech. I am proud member of the FC, a 100-person team within Fidelity Investments. With an MBA from the University of Virginia Darden School of Business, class of 2023, and an Engineering Physics from IIT Bombay. 
+Hello! I'm Nik, a serial technology entrepreneur, have built ventures across cleantech, edtech, and autotech. I am a member of the FC, a 100-person team within Fidelity Investments. With an MBA from the University of Virginia Darden School of Business, class of 2023, and an Engineering Physics from IIT Bombay. 
 ## 🎓 Education
 - **MBA, University of Virginia Darden School of Business, 2023** : Concentrations in Asset Management, Business Analytics, Entrepreneurship/Innovation, Strategy Consulting, Supply Chain Management
 - **Master of Technology in Engineering Physics, IIT Bombay** :Focused on Nanoscience 
