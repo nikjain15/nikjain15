@@ -1,12 +1,12 @@
 # Nikhil Jain (Nik)
 ## 👋 Introduction
-Hello! I'm Nik, a serial technology entrepreneur, have built ventures across cleantech, edtech, and autotech. With an MBA from the University of Virginia Darden School of Business, and an Engineering Physics from IIT Bombay. 
+Hello! I'm Nik, a serial technology entrepreneur, have built ventures across cleantech, edtech, and autotech. 
 ## 🎓 Education
 - **MBA, University of Virginia Darden School of Business** : Concentrations in Asset Management, Business Analytics, Entrepreneurship/Innovation, Strategy Consulting, Supply Chain Management
 - **Master of Technology in Engineering Physics, IIT Bombay** :Focused on Nanoscience 
 ## 💼 Professional Experience
 - **Fidelity Investments (Strategy)** - Engaging closely with senior Fidelity leadership teams, including the Office of the Chairman, Management Committee, and Business Unit Presidents, serving as a trusted advisor to navigate complex business challenges.
-- **CredR (Co-founder, CEO and Chief Product & Growth Officer)** - Co-founded and scaled India's largest used two-wheeler marketplace, achieving over 150K+ transactions and secured $29.5MM in funding from prominent investors. Pioneered the 'Supply Quality Index' tool, enhancing the auto-tech industry with machine learning innovation.
+- **CredR (Co-founder, CEO and Chief Product & Growth Officer, Autotech Venture)** - Co-founded and scaled India's largest used two-wheeler marketplace, achieving over 150K+ transactions and secured $29.5MM in funding from prominent investors. Pioneered the 'Supply Quality Index' tool, enhancing the auto-tech industry with machine learning innovation.
 - **Coursewave Eduventures (Vice President, Product & Operations, EdTech Venture)** - Co-founded and expanded an EdTech venture offering AI/ML solutions, orchestrated M&A activities, and significantly grew the user base and corporate partnerships.
 -  **Enelek (Co-founder, Clean Tech Solar Startup)** - Built and scaled the startup, onboarded 30 clients, and achieved $150K in revenue before a successful exit.
 ## 🚀 Products Built
