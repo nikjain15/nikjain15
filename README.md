@@ -1,28 +1,51 @@
-# Nikhil Jain (Nik)
-## 👋 Introduction
-Hello! I'm Nik, a serial technology entrepreneur, have built ventures across cleantech, edtech, and autotech. 
-## 🎓 Education
-- **MBA, University of Virginia Darden School of Business** : Concentrations in Asset Management, Business Analytics, Entrepreneurship/Innovation, Strategy Consulting, Supply Chain Management
-- **Master of Technology in Engineering Physics, IIT Bombay** :Focused on Nanoscience 
-## 💼 Professional Experience
-- **Fidelity Investments (Strategy)** - Engaging closely with senior Fidelity leadership teams, including the Office of the Chairman, Management Committee, and Business Unit Presidents, serving as a trusted advisor to navigate complex business challenges.
-- **CredR (Co-founder, CEO and Chief Product & Growth Officer, Autotech Venture)** - Co-founded and scaled India's largest used two-wheeler marketplace, achieving over 150K+ transactions and secured $29.5MM in funding from prominent investors. Pioneered the 'Supply Quality Index' tool, enhancing the auto-tech industry with machine learning innovation.
-- **Coursewave Eduventures (Vice President, Product & Operations, EdTech Venture)** - Co-founded and expanded an EdTech venture offering AI/ML solutions, orchestrated M&A activities, and significantly grew the user base and corporate partnerships.
--  **Enelek (Co-founder, Clean Tech Solar Startup)** - Built and scaled the startup, onboarded 30 clients, and achieved $150K in revenue before a successful exit.
-## 🚀 Products Built
-- **Supply Quality Index for CredR** - Envisioned and developed an ML-driven analytical tool that improved bottom-line economics by 200% and quality by 100%.
-- **AI-powered Knowledge Cloud for Columbia University & Salesforce Inc.** - Led the creation of an AI knowledge platform, attracting 100K users with zero marketing spend.
-- **Clean Tech Solar Solutions (Enelek)** - Developed and commercialized solar technology solutions, successfully navigating the startup from inception to exit.
-## 🏆 Achievements
-- **Forbes 30 Under 30 Asia, 2016** - Recognized for significant contributions to technology and entrepreneurship.
-- **Speaker & Panelist** - Featured at industry summits including TiE, IAMAI, NASSCOM, and more.
-## 🛠 Technical Skills
-- Languages & Tools: Python, SQL, JIRA, Miro, Salesforce CRM, ERP, GitHub, Deep-learning/AI/Machine Learning Models
-- Data Analysis & Visualization: Tableau, Google Analytics, Facebook Analytics
-- Cloud Technologies: AWS
-## 📫 How to Reach Me
-- **LinkedIn:** [linkedin.com/in/niktechnologist](#)
-  ## 🌱 Interests
-Passionate about Formula 1 Racing (Lewis Hamilton fan), rock and snow climbing in the Western Himalayas, and soccer (Lionel Messi enthusiast).
+## Hey, I'm Nik 👋
 
+**3x Founder | Forbes 30 Under 30 Asia | Building AI at Fidelity**
 
+I build things at the intersection of AI, commerce, and finance.
+
+---
+
+### Now
+- 🏦 Building AI products at [Fidelity Investments](https://fidelity.com) ($6.4T AUM)
+- 🤖 Exploring agentic commerce protocols ([ACP](https://agenticcommerce.dev), [UCP](https://ucp.dev))
+- ✍️ Writing at [founderfirst.one](https://founderfirst.one)
+
+---
+
+### What I've Built
+
+**🏍️ India's Largest Used Vehicle Marketplace**
+Co-founded and scaled to 150K+ transactions. Raised $29.5M from marquee investors. Built ML-powered pricing and quality systems that became industry standard.
+
+**🧠 Supply Quality Index**
+Designed and shipped an ML tool that analyzed vehicle quality signals across the supply chain. Improved unit economics by 200%.
+
+**📚 AI Knowledge Platform**
+Built an AI-powered knowledge management system adopted by Columbia University and Salesforce teams. Grew to 100K+ users through organic adoption.
+
+**☀️ Cleantech / Solar**
+Early founder in India's solar energy space. Built products for distributed solar deployment.
+
+---
+
+### Education
+
+🎓 **IIT Bombay** · MS Engineering Physics (Nanoscience)
+🎓 **UVA Darden** · MBA
+
+---
+
+### Currently Exploring
+
+- How AI agents will transform commerce and payments
+- Agentic protocols: ACP (Stripe/OpenAI) and UCP (Shopify)
+- AI applications in asset management
+
+---
+
+### Connect
+
+[![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white)](https://twitter.com/nikjain15)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/nikjain15)
+[![Website](https://img.shields.io/badge/-founderfirst.one-000000?style=flat&logo=safari&logoColor=white)](https://founderfirst.one)
