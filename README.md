@@ -18,21 +18,21 @@ I build things at the intersection of AI, commerce, and finance.
 **🏍️ India's Largest Used Vehicle Marketplace**
 Co-founded and scaled to 150K+ transactions. Raised $29.5M from marquee investors. Built ML-powered pricing and quality systems that became industry standard.
 
-**🧠 Supply Quality Index**
-Designed and shipped an ML tool that analyzed vehicle quality signals across the supply chain. Improved unit economics by 200%.
+**🧠 ML/AI Systems**
+Designed and shipped an ML tool that analyzed vehicle quality signals across the supply chain. Improved unit economics by 200%. Built AI-powered knowledge platform adopted by Columbia University and Salesforce teams — 100K+ users through organic adoption.
 
-**📚 AI Knowledge Platform**
-Built an AI-powered knowledge management system adopted by Columbia University and Salesforce teams. Grew to 100K+ users through organic adoption.
+**📚 EdTech**
+Co-founded and expanded an EdTech venture offering AI/ML solutions, orchestrated M&A activities, and significantly grew user base and corporate partnerships.
 
-**☀️ Cleantech / Solar**
+**☀️ Cleantech**
 Early founder in India's solar energy space. Built products for distributed solar deployment.
 
 ---
 
 ### Education
 
-🎓 **IIT Bombay** · MS Engineering Physics (Nanoscience)
-🎓 **UVA Darden** · MBA
+🎓 **IIT Bombay** · Eng. Physics with Nanoscience
+🎓 **UVA Darden** · MBA (Product Management, Asset Management, Business Analytics)
 
 ---
 
@@ -41,11 +41,3 @@ Early founder in India's solar energy space. Built products for distributed sola
 - How AI agents will transform commerce and payments
 - Agentic protocols: ACP (Stripe/OpenAI) and UCP (Shopify)
 - AI applications in asset management
-
----
-
-### Connect
-
-[![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white)](https://twitter.com/nikjain15)
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/nikjain15)
-[![Website](https://img.shields.io/badge/-founderfirst.one-000000?style=flat&logo=safari&logoColor=white)](https://founderfirst.one)
