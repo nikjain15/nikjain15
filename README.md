@@ -6,7 +6,7 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/niktechnologist/)
 [![X](https://img.shields.io/badge/X-000000?style=flat&logo=x&logoColor=white)](https://x.com/NIkJain1510)
-[![Writing](https://img.shields.io/badge/Writing-founderfirst.one-1a1a1a?style=flat)](https://founderfirst.one)
+[![Website](https://img.shields.io/badge/Website-nikjain15.github.io-1a1a1a?style=flat)](https://nikjain15.github.io)
 
 </div>
 
