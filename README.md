@@ -68,7 +68,7 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 
 **What I built.** Penny, an agent that runs the back office 24/7:
 - Auto-categorizes every transaction across **Stripe, bank & cards**
-- Capture receipts by **photo** → **approve with one tap**
+- Capture receipts by **photo** (voice capture on the roadmap) → **approve with one tap**
 - **Chases late payers herself**
 - Books stay **CPA-ready**, with **real-time profit, not just revenue**
 
@@ -145,7 +145,7 @@ Senior job hunts were always opaque: the best roles are rarely posted, and no jo
 
 *Technology edge*
 - **Prompt-injection defense.** Commit messages are attacker-controllable yet auto-published to 64 people, so a server-side `checkNarrative` guard ensures a summary can only describe its own author
-- **~10× cheaper** through identity-based caching
+- **Cost-engineered:** identity-based caching cuts modeled pilot spend **~10–20×**
 - **800+ tests** (unit + Firestore rules + integration + e2e)
 
 **Stack** — Next.js 16 · React 19 · TypeScript · Firestore (realtime) · server-side AI · Vercel
@@ -186,7 +186,7 @@ Senior job hunts were always opaque: the best roles are rarely posted, and no jo
 
 **Pulse and Rally aren't two silos: an agent in one can dispatch work directly to an agent in the other.** Keyed by shared identity, they exchange **recognition, progress and "stuck" signals, presence, and commitments**, so a blocker sensed in Pulse can trigger a nudge in Rally, and recognition in Rally can surface against your work in Pulse.
 
-It's a working demonstration of **agent-to-agent dispatch across independent systems**, the exact pattern enterprises are about to face as every tool ships its own agent and they all have to cooperate on shared state.
+It's a working **agent-to-agent dispatch mechanism** across independent systems, the exact pattern enterprises are about to face as every tool ships its own agent and they all have to cooperate on shared state.
 
 ---
 
