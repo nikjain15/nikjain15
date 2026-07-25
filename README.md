@@ -58,7 +58,7 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 
 *Pillar A proves I can run trillion-dollar AI transformation and strategy. Here I build AI-first products from zero: hands-on, at the frontier, with real guardrails.*
 
-### ⭐ FounderFirst — *the autonomous back office founders actually wanted* &nbsp;·&nbsp; [early access →](https://founderfirst.one)
+### ⭐ FounderFirst: *the autonomous back office founders actually wanted* &nbsp;·&nbsp; [early access →](https://founderfirst.one)
 
 **Meet Penny: she does your books while you sleep, and only taps you when she needs a call.**
 
@@ -84,12 +84,12 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 - **Multi-model routing:** fast models for bulk categorization, a reasoning model for judgment calls, a writing model for client comms
 - **Grounded in your real ledger.** Answers are retrieved, never guessed; a confident wrong number is worse than a question
 
-**Stack** — TypeScript monorepo · event-driven services · Postgres · multi-model AI orchestration · design-token system
-**Where it is now** — live in early access, referral-driven waitlist · 640 commits and shipping
+**Stack:** TypeScript monorepo · event-driven services · Postgres · multi-model AI orchestration · design-token system
+**Where it is now:** live in early access, referral-driven waitlist · 640 commits and shipping
 
 <br>
 
-### ⭐ RoleOS — *RO runs your job hunt. You make the calls.* &nbsp;·&nbsp; [live →](https://ro.roleos.fyi)
+### ⭐ RoleOS: *RO runs your job hunt. You make the calls.* &nbsp;·&nbsp; [live →](https://ro.roleos.fyi)
 
 **A senior job hunt is the highest-stakes, lowest-leverage thing you do. RO takes the work; you keep every decision.**
 
@@ -119,12 +119,12 @@ Senior job hunts were always opaque: the best roles are rarely posted, and no jo
 - **Grounded matching.** Retrieval over a live role corpus (vector search) with calibrated scoring, not vibes
 - **Reliability as code,** enforced in the codebase: **no "send" tool exists in the agent**, guaranteed by an invariant test suite
 
-**Stack** — Next.js 15 · TypeScript · Cloudflare Workers + Workflows · Supabase (Postgres / pgvector, RLS, auth) · multi-model orchestration · vector embeddings
-**Where it is now** — live at [ro.roleos.fyi](https://ro.roleos.fyi) · 208 commits
+**Stack:** Next.js 15 · TypeScript · Cloudflare Workers + Workflows · Supabase (Postgres / pgvector, RLS, auth) · multi-model orchestration · vector embeddings
+**Where it is now:** live at [ro.roleos.fyi](https://ro.roleos.fyi) · 208 commits
 
 <br>
 
-### ⚡ Pulse — *the AI-first alternative to Jira* &nbsp;·&nbsp; [live →](https://pulsecohort.vercel.app)
+### ⚡ Pulse: *the AI-first alternative to Jira* &nbsp;·&nbsp; [live →](https://pulsecohort.vercel.app)
 
 **Jira, if it filled itself in.**
 
@@ -148,12 +148,12 @@ Senior job hunts were always opaque: the best roles are rarely posted, and no jo
 - **Cost-engineered:** identity-based caching cuts modeled pilot spend **~10–20×**
 - **800+ tests** (unit + Firestore rules + integration + e2e)
 
-**Stack** — Next.js 16 · React 19 · TypeScript · Firestore (realtime) · server-side AI · Vercel
-**Where it is now** — live at [pulsecohort.vercel.app](https://pulsecohort.vercel.app) · 99 commits
+**Stack:** Next.js 16 · React 19 · TypeScript · Firestore (realtime) · server-side AI · Vercel
+**Where it is now:** live at [pulsecohort.vercel.app](https://pulsecohort.vercel.app) · 99 commits
 
 <br>
 
-### ⚡ Rally — *the AI-first, gamified alternative to Slack & Discord* &nbsp;·&nbsp; [live →](https://rally-nikjain15.vercel.app)
+### ⚡ Rally: *the AI-first, gamified alternative to Slack & Discord* &nbsp;·&nbsp; [live →](https://rally-nikjain15.vercel.app)
 
 **Team chat that actually builds the team: recognition, motivation, and follow-through, not just messages.**
 
@@ -177,8 +177,8 @@ Senior job hunts were always opaque: the best roles are rarely posted, and no jo
 - **Ungameable ledger.** Points live in an **append-only** collection written only by trusted server routes; rank is *computed, never stored*; you can't confirm your own recognition
 - **The AI has no authority.** It classifies, summarizes, and drafts, but never writes a points-bearing row
 
-**Stack** — Next.js 16 · React 19 · TypeScript · Firestore · Firebase Auth · server-side AI
-**Where it is now** — live at [rally-nikjain15.vercel.app](https://rally-nikjain15.vercel.app)
+**Stack:** Next.js 16 · React 19 · TypeScript · Firestore · Firebase Auth · server-side AI
+**Where it is now:** live at [rally-nikjain15.vercel.app](https://rally-nikjain15.vercel.app)
 
 <br>
 
@@ -194,13 +194,13 @@ It's a working **agent-to-agent dispatch mechanism** across independent systems,
 
 *Before modernizing trillion-dollar finance, I was founding companies and dragging legacy systems into the future at startup scale.*
 
-**CredR — Co-founder · 2015–2021** &nbsp;·&nbsp; *India's largest used two-wheeler marketplace*
+**CredR: Co-founder · 2015–2021** &nbsp;·&nbsp; *India's largest used two-wheeler marketplace*
 - **Scaled it 0-to-1:** **150K+ transactions**, **$29.5M raised** (Yamaha, Eight Roads, Omidyar Network), a **450-person team**, a **Top-20 Indian startup**
 - **Modernized an entire dealer network:** took **1,050 dealers off handwritten ledgers & spreadsheets onto a mobile-first, ML-powered platform** (80% adoption, **10× consumer growth**), the same instinct I now apply at $1.6T scale
 - **AI from day one:** an industry-first ML buyback model over **800K vehicle histories**; NLP chatbots that **cut resolution time 42%**
 
-**Earlier** — co-founded **Coursewave** (edtech, 2013) and **Enelek Power** (cleantech, 2011); building since college.
-**Foundations** — IIT-Bombay (Engineering Physics) · UVA Darden MBA (Batten Fellow, top 0.3% of 3,000) · Forbes 30 Under 30 Asia
+**Earlier:** co-founded **Coursewave** (edtech, 2013) and **Enelek Power** (cleantech, 2011); building since college.
+**Foundations:** IIT-Bombay (Engineering Physics) · UVA Darden MBA (Batten Fellow, top 0.3% of 3,000) · Forbes 30 Under 30 Asia
 
 ---
 
