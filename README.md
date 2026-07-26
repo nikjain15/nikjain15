@@ -56,7 +56,34 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 
 ## 🚀 Building what's next
 
-*Pillar A proves I can run trillion-dollar AI transformation and strategy. Here I build AI-first products from zero: hands-on, at the frontier, with real guardrails.*
+*Pillar A proves I can run trillion-dollar AI transformation and strategy. Here I build AI-first products from zero: hands-on, at the frontier, with real guardrails. I lead with the platform they all run on.*
+
+### ⭐ Conduit: *the internal AI platform every product below runs on* &nbsp;·&nbsp; [code →](https://github.com/nikjain15/conduit)
+
+**One control plane for routing, evals, RAG, agents, and cost, so a new AI use case is a config change, not a rebuild.**
+
+**The problem.** Every AI product re-solves the same plumbing: which model, how to keep it cheap, how to ground it, how to stop it shipping a confidently wrong answer, how to see what it actually costs. Rebuilt per app, it drifts, and both quality and spend become guesswork.
+
+**What I built.** A platform my products plug into, hybrid by design: an embeddable in-process core for low-latency calls, plus a control plane (a console and a gateway that speaks HTTP and MCP) for configuration, evaluation, and cost governance.
+
+**Why it's different**
+
+*Platform edge*
+- **A new use case is a config object, not a code change.** One `UseCaseProfile` composes routing, retrieval, agent, prompts, guardrails, evals, and SLOs. The code ships pluggable registries; config composes them; nothing redeploys.
+- **Model-agnostic by design.** Anthropic, Cloudflare Workers-AI, and OpenRouter behind one interface, with a live model catalog and use-case-aware routing: cheap open weights for bulk, a frontier tier for judgment, a spend cap that fails over on its own.
+- **Quality as a gate, not a hope.** Declarative evals over a pluggable check-method registry run both inline (fail-closed: a failing floor blocks the answer) and offline (named metrics: precision, recall, F1).
+- **Distribution built in.** Any capability can be exposed as an MCP server (stdio and hosted), so an external agent can plug straight into it.
+
+*Engineering edge*
+- **Sampling contract enforced per model.** The current reasoning tiers reject sampling parameters, so the core sends them only where they are accepted, derived live from each model's own declared parameters.
+- **Cost and quality are measured, never guessed.** Every call writes one metered decision (cost, latency, gate outcome); the console reads real usage and SUQS service-level objectives, and shows an honest empty state rather than a fabricated number.
+
+**Runs in production:** RoleOS, FounderFirst, and Pulse all route through Conduit and report live usage back to it.
+
+**Stack:** TypeScript monorepo (10 packages) · pluggable provider adapters (Anthropic / Workers-AI / OpenRouter) · HTTP + MCP gateway · React console · fail-closed eval gates
+**Where it is now:** open source, CI green, powering the three products below
+
+<br>
 
 ### ⭐ FounderFirst: *the autonomous back office founders actually wanted* &nbsp;·&nbsp; [early access →](https://founderfirst.one)
 
