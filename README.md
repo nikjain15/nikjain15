@@ -58,7 +58,7 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 
 *Pillar A proves I can run trillion-dollar AI transformation and strategy. Here I build AI-first products from zero: hands-on, at the frontier, with real guardrails. I lead with the platform they all run on.*
 
-### ⭐ Conduit: *the internal AI platform every product below runs on* &nbsp;·&nbsp; [code →](https://github.com/nikjain15/conduit)
+### ⭐ Conduit: *the internal AI platform every product below runs on* &nbsp;·&nbsp; [console →](https://nikjain15.github.io/conduit/) &nbsp;·&nbsp; [code →](https://github.com/nikjain15/conduit)
 
 **One control plane for routing, evals, RAG, agents, and cost, so a new AI use case is a config change, not a rebuild.**
 
@@ -81,7 +81,7 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 **Runs in production:** RoleOS, FounderFirst, and Pulse all route through Conduit and report live usage back to it.
 
 **Stack:** TypeScript monorepo (10 packages) · pluggable provider adapters (Anthropic / Workers-AI / OpenRouter) · HTTP + MCP gateway · React console · fail-closed eval gates
-**Where it is now:** open source, CI green, powering the three products below
+**Where it is now:** open source, CI green, live console at nikjain15.github.io/conduit, powering the three products below
 
 <br>
 
