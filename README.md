@@ -78,14 +78,14 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 - **Sampling contract enforced per model.** The current reasoning tiers reject sampling parameters, so the core sends them only where they are accepted, derived live from each model's own declared parameters.
 - **Cost and quality are measured, never guessed.** Every call writes one metered decision (cost, latency, gate outcome); the console reads real usage and SUQS service-level objectives, and shows an honest empty state rather than a fabricated number.
 
-**Runs in production:** RoleOS, FounderFirst, and Pulse all route through Conduit and report live usage back to it.
+**How the apps use it:** RoleOS, FounderFirst, Pulse, and Rally embed the Conduit client and route their AI through it in process. Central gateway reporting is wired and lights up live usage the moment a gateway runs with real traffic.
 
 **Stack:** TypeScript monorepo (10 packages) · pluggable provider adapters (Anthropic / Workers-AI / OpenRouter) · HTTP + MCP gateway · React console · fail-closed eval gates
-**Where it is now:** open source, CI green, live console at nikjain15.github.io/conduit, powering the three products below
+**Where it is now:** open source, CI green, live console at nikjain15.github.io/conduit in demo mode against a mock gateway. The four products below embed it.
 
 <br>
 
-### ⭐ FounderFirst: *the autonomous back office founders actually wanted* &nbsp;·&nbsp; [early access →](https://founderfirst.one)
+### ⭐ FounderFirst: *the autonomous back office founders actually wanted* &nbsp;·&nbsp; [early access →](https://founderfirst.one) &nbsp;·&nbsp; [code →](https://github.com/nikjain15/founderfirst.one)
 
 **Meet Penny: she does your books while you sleep, and only taps you when she needs a call.**
 
@@ -116,7 +116,7 @@ I live at the messy edge where AI meets systems that can't go down: modernizing 
 
 <br>
 
-### ⭐ RoleOS: *RO runs your job hunt. You make the calls.* &nbsp;·&nbsp; [live →](https://ro.roleos.fyi)
+### ⭐ RoleOS: *RO runs your job hunt. You make the calls.* &nbsp;·&nbsp; [live →](https://ro.roleos.fyi) &nbsp;·&nbsp; [code →](https://github.com/nikjain15/roleos-app)
 
 **A senior job hunt is the highest-stakes, lowest-leverage thing you do. RO takes the work; you keep every decision.**
 
@@ -151,7 +151,7 @@ Senior job hunts were always opaque: the best roles are rarely posted, and no jo
 
 <br>
 
-### ⚡ Pulse: *the AI-first alternative to Jira* &nbsp;·&nbsp; [live →](https://pulsecohort.vercel.app)
+### ⚡ Pulse: *the AI-first alternative to Jira* &nbsp;·&nbsp; [live →](https://pulsecohort.vercel.app) &nbsp;·&nbsp; [code →](https://github.com/nikjain15/pulse)
 
 **Jira, if it filled itself in.**
 
@@ -180,7 +180,7 @@ Senior job hunts were always opaque: the best roles are rarely posted, and no jo
 
 <br>
 
-### ⚡ Rally: *the AI-first, gamified alternative to Slack & Discord* &nbsp;·&nbsp; [live →](https://rally-nikjain15.vercel.app)
+### ⚡ Rally: *the AI-first, gamified alternative to Slack & Discord* &nbsp;·&nbsp; [live →](https://rally-nikjain15.vercel.app) &nbsp;·&nbsp; [code →](https://github.com/nikjain15/rally)
 
 **Team chat that actually builds the team: recognition, motivation, and follow-through, not just messages.**
 
