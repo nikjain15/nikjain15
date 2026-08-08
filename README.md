@@ -14,7 +14,7 @@
 
 I live at the messy edge where AI meets systems that can't go down: modernizing what exists, building what's next. The real value of AI shows up where it's hardest to put it, inside the mission-critical systems a business actually runs on. Decades old, unforgiving, always live. That's where I work, re-architecting legacy finance into AI-native platforms without breaking production, and building AI-first products from zero when a real problem still has no tool for it.
 
-> *I've shipped production AI for over a decade: NLP chatbots cutting resolution time 42% at my own startup, ML engines lifting engagement 30% in asset management today. AI was my job before it was everyone's headline. The models keep getting better; the edge is knowing where they belong.*
+> *I've shipped production AI for over a decade: NLP chatbots cutting resolution time 42% at my own startup, ML engines lifting qualified-lead volume 30% in asset management today. AI was my job before it was everyone's headline. The models keep getting better; the edge is knowing where they belong.*
 
 The thesis, learned the expensive way: **every AI system needs a deterministic backbone, an eval gate it can fail, and a human approval path for anything irreversible.** Every product below is built on it.
 
@@ -36,13 +36,13 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 **The stakes.** Every output feeds real money movement: trades, positions, NAVs, and dozens of upstream and downstream systems that depend on my numbers. One value off by a rounding error is a reconciliation break, or a real financial one.
 
-**What I own.** The core trading module, end to end: vision → architecture → delivery, as the product lead inside a 50+ team program spanning the US, Ireland, and India.
+**What I own.** The core trading module, end to end: vision → architecture → delivery, as the product lead inside a 50+ team program spanning 3 countries.
 
 **The system.** 30 years of business logic locked in **DB2 SQL PL stored procedures and overnight batch jobs**. The rules live in the data layer. Nothing breaks, nothing drifts.
 
 **The hard part, parity to the penny.** Every change produces identical outputs, preserves the logic exactly, and feeds correct data to every up/downstream system. I reconcile new against old, value by value, before go-live.
 
-**My approach.** Strangler-fig decomposition into an **event-driven, saga-based, API-first** cloud architecture, with **AI agents inside workflows that were manual for a generation** — agents draft, humans approve — without loosening the accuracy bar.
+**My approach.** Strangler-fig decomposition into an **event-driven, saga-based, API-first** cloud architecture, with **AI agents inside workflows that were manual for a generation** (agents draft, humans approve) without loosening the accuracy bar.
 
 | 🎯 Accuracy | ⚡ Batch | 🌍 Scale |
 |:---:|:---:|:---:|
@@ -100,12 +100,12 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 **Why it's different**
 
-- **Deterministic first.** Exhaustive rules run before any model: **82.5% of transactions resolve with zero model calls.** Only genuine ambiguity escalates — cheap model first, reasoning model when it hedges — scoring **85.6% macro-F1** on the hard remainder.
+- **Deterministic first.** Exhaustive rules run before any model: **82.5% of transactions resolve with zero model calls.** Only genuine ambiguity escalates (cheap model first, reasoning model when it hedges), scoring **85.6% macro-F1** on the hard remainder.
 - **You speak founder; Penny speaks accountant.** Log "paid the AWS bill," she maps the category and attaches the receipt, learning your business's own rules with every transaction.
 - **Grounded in your real ledger.** Answers are retrieved, never guessed; a confident wrong number is worse than a question.
 
 **Stack:** TypeScript monorepo · event-driven services · Postgres · multi-model orchestration via Conduit
-**Where it is now:** live in early access, referral-driven waitlist (100+ founders), no active users yet — and honest about that.
+**Where it is now:** live in early access, referral-driven waitlist (100+ founders), no active users yet, and honest about that.
 
 <br>
 
@@ -119,7 +119,7 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 **Why it's different**
 
-- **Reliability as code.** **No "send" tool exists in the agent** — human-gated outbound is guaranteed by dependency-cruiser rules and an invariant test suite, not by a design doc.
+- **Reliability as code.** **No "send" tool exists in the agent**: human-gated outbound is guaranteed by dependency-cruiser rules and an invariant test suite, not by a design doc.
 - **Grounded matching.** Retrieval over the live corpus (pgvector) with calibrated scoring, not vibes.
 - **A five-gate agent under a simple surface** (Match, Screen, Build, Coach, Negotiate) on a metered multi-model registry: right model, right cost, per task.
 
@@ -138,7 +138,7 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 **Why it's different**
 
-- **Prompt-injection defense that's provable.** Commit messages are attacker-controllable yet auto-published to the whole team, so a deterministic server-side guard ensures a summary can only describe its own author — holding **100% must-block recall against a labeled injection harness** that exercises the real shipped function, not a mock.
+- **Prompt-injection defense that's provable.** Commit messages are attacker-controllable yet auto-published to the whole team, so a deterministic server-side guard ensures a summary can only describe its own author, holding **100% must-block recall against a labeled injection harness** that exercises the real shipped function, not a mock.
 - **The board is always true.** It reflects the real work, not what someone remembered to type.
 - **Cost-engineered:** identity-based caching cuts modeled pilot spend ~10–20×.
 - **934 passing tests** (unit + rules + integration + e2e).
@@ -167,7 +167,7 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 ### 📗 Lossless Modernization: *the playbook, open-sourced* &nbsp;·&nbsp; [site →](https://nikjain15.github.io/lossless-modernization) &nbsp;·&nbsp; [code →](https://github.com/nikjain15/lossless-modernization)
 
-**How to turn money-critical legacy systems into AI-native platforms without losing a byte of logic or a cent of accuracy.** A four-stage method, seven patterns, parity-harness templates you can run, and a post-mortem library of famous modernizations that failed — with what each one cost. MIT-licensed.
+**How to turn money-critical legacy systems into AI-native platforms without losing a byte of logic or a cent of accuracy.** A four-stage method, seven patterns, parity-harness templates you can run, and a post-mortem library of famous modernizations that failed, with what each one cost. MIT-licensed.
 
 ### 📊 Build OS: *the scorecard I grade myself with* &nbsp;·&nbsp; [dashboard →](https://nikjain15.github.io/build-os/)
 
@@ -175,7 +175,7 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 ### 🔗 …and they talk to each other
 
-**Pulse and Rally aren't two silos: an agent in one can dispatch work directly to an agent in the other.** Keyed by shared identity, they exchange recognition, progress and "stuck" signals, presence, and commitments — a working **agent-to-agent dispatch mechanism** across independent systems, the exact pattern enterprises are about to face as every tool ships its own agent.
+**Pulse and Rally aren't two silos: an agent in one can dispatch work directly to an agent in the other.** Keyed by shared identity, they exchange recognition, progress and "stuck" signals, presence, and commitments: a working **agent-to-agent dispatch mechanism** across independent systems, the exact pattern enterprises are about to face as every tool ships its own agent.
 
 ---
 
@@ -184,12 +184,22 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 *Before modernizing trillion-dollar finance, I was founding companies and dragging legacy systems into the future at startup scale.*
 
 **CredR: Co-founder · 2015–2021** &nbsp;·&nbsp; *one of India's largest used two-wheeler marketplaces*
-- **Scaled it 0-to-1:** 150K+ transactions, **$29.5M raised** (Yamaha, Eight Roads, Omidyar Network), a **450-person team**
-- **Modernized an entire dealer network:** took **1,050 dealers off handwritten ledgers onto a mobile-first, ML-powered platform** (80% adoption, 10× consumer growth) — the same instinct I now apply at $1.6T scale
-- **AI from day one:** an ML pricing engine over **800K vehicle histories** that became the category's de facto standard; NLP chatbots that **auto-resolved 35% of inbound and cut resolution time 42%**
+- **Scaled it 0-to-1:** 150K+ cumulative transactions, an **$18M revenue run-rate**, **$29.5M raised** (Yamaha, Eight Roads, Omidyar Network), a **450+ person team**
+- **Modernized an entire dealer network:** took **1,050 dealers off handwritten ledgers onto a mobile-first, ML-powered platform** (80% adoption, 10× consumer growth), the same instinct I now apply at $1.6T scale
+- **AI from day one:** an ML pricing model covering both acquisition and resale, trained on **800K vehicle histories**, which became the category's de facto standard; NLP chatbots **auto-resolving 35% of 4,000+ monthly queries and cutting resolution time 42%**
 
 **Earlier:** co-founded **Coursewave** (edtech, exited via M&A) and **Enelek Power** (cleantech, acquired); building since college.
 **Foundations:** IIT-Bombay (Engineering Physics) · UVA Darden MBA (Batten Fellow, top 0.3% of 3,000) · Forbes 30 Under 30 Asia
+
+---
+
+## Writing
+
+Published on AI, fintech and technology in India's national business press.
+
+- **[ChatGPT in financial industry: here is how this AI tool can make disruptions in the sector](https://www.cnbctv18.com/views/chatgpt-in-financial-industry--here-is-how-this-ai-tool-can-make-disruptions-in-the-sector-16208251.htm)** · CNBC TV18, March 2023
+- **[Digital Rupee and India Stack: can other countries also replicate the model?](https://economictimes.indiatimes.com/markets/cryptocurrency/digital-rupee-and-india-stack-can-other-countries-also-replicate-the-model/articleshow/98226579.cms)** · The Economic Times, 2023
+- **[Revolutionizing real estate: the role of technology in redefining property transactions](https://www.financialexpress.com/money/revolutionizing-real-estate-the-role-of-technology-in-redefining-property-transactions/3039617/)** · Financial Express, April 2023
 
 ---
 
