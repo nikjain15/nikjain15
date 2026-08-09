@@ -183,7 +183,7 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 *Before modernizing trillion-dollar finance, I was founding companies and dragging legacy systems into the future at startup scale.*
 
-**CredR: Co-founder · 2015–2021** &nbsp;·&nbsp; *one of India's largest used two-wheeler marketplaces*
+**CredR: Co-founder · 2015–2021** &nbsp;·&nbsp; *was one of India's largest used two-wheeler marketplaces*
 - **Scaled it 0-to-1:** 150K+ cumulative transactions, an **$18M revenue run-rate**, **$29.5M raised** (Yamaha, Eight Roads, Omidyar Network), a **450+ person team**
 - **Modernized an entire dealer network:** took **1,050 dealers off handwritten ledgers onto a mobile-first, ML-powered platform** (80% adoption, 10× consumer growth), the same instinct I now apply at $1.6T scale
 - **AI from day one:** an ML pricing model covering both acquisition and resale, trained on **800K vehicle histories**, which became the category's de facto standard; NLP chatbots **auto-resolving 35% of 4,000+ monthly queries and cutting resolution time 42%**
@@ -202,6 +202,22 @@ Published on AI, fintech and technology in India's national business press.
 - **[Revolutionizing real estate: the role of technology in redefining property transactions](https://www.financialexpress.com/money/revolutionizing-real-estate-the-role-of-technology-in-redefining-property-transactions/3039617/)** · Financial Express, April 2023
 
 ---
+
+---
+
+## Writing
+
+Published on AI, fintech and technology in Indian national business media, 2023.
+
+| Piece | Outlet |
+|---|---|
+| [ChatGPT in financial industry: how this AI tool can make disruptions in the sector](https://www.cnbctv18.com/views/chatgpt-in-financial-industry--here-is-how-this-ai-tool-can-make-disruptions-in-the-sector-16208251.htm) | CNBC TV18 |
+| [Digital Rupee and India Stack: can other countries replicate the model?](https://economictimes.indiatimes.com/markets/cryptocurrency/digital-rupee-and-india-stack-can-other-countries-also-replicate-the-model/articleshow/98226579.cms) | The Economic Times |
+| [The role of technology in redefining property transactions](https://www.financialexpress.com/money/revolutionizing-real-estate-the-role-of-technology-in-redefining-property-transactions/3039617/) | Financial Express |
+| [How entrepreneurs can create high-hope environments](https://timesofindia.indiatimes.com/blogs/voices/how-entrepreneurs-can-create-high-hope-environments/) | Times of India (Voices) |
+| [Unleashing the potential of alternative assets](https://www.punekarnews.in/unleashing-the-potential-of-alternative-assets-navigating-innovative-trends-and-technological-changes-in-a-dynamic-investment-environment/) | Punekar News |
+
+The ChatGPT piece ran in March 2023, about three months after ChatGPT's public release.
 
 ## Find me
 
