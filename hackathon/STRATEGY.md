@@ -4,7 +4,7 @@
 **Status:** Strategy locked (v2, final). Design and build begin per Section 8.
 **One-liner:** The clearinghouse for agentic commerce. Checkout protocols move the money; Clearhouse underwrites who it moves to, with Amex-grade merchant underwriting that runs in seconds, prices protection from what it finds, holds funds until commitments verify, and pays instantly when its own score is wrong.
 
-Companion docs: [UNDERWRITING.md](UNDERWRITING.md) (the full methodology), [TAXONOMY.md](TAXONOMY.md) (the named fraud taxonomy), [EVIDENCE.md](EVIDENCE.md) (sourced real-world anchors).
+Companion docs: [UNDERWRITING.md](UNDERWRITING.md) (the full methodology), [TAXONOMY.md](TAXONOMY.md) (the named fraud taxonomy), [EVIDENCE.md](EVIDENCE.md) (sourced real-world anchors), [PLATFORM.md](PLATFORM.md) (extensibility and the self-improving loop).
 
 ---
 
@@ -17,6 +17,7 @@ Companion docs: [UNDERWRITING.md](UNDERWRITING.md) (the full methodology), [TAXO
 5. **Evidence grounding.** Every scenario re-enacts a documented incident; every number traces to EVIDENCE.md; unsourced claims are cut from the pitch.
 6. **Stack:** Next.js + Vercel + Claude API. One language, one deploy, native streaming for the live gauntlet.
 7. **Pitch: dual audience, scariest first.** Open with the Guardio incident (an agent bought from a fake store with a real card, no confirmation), then Microsoft's finding that 31 companies already manipulate agent recommendations commercially.
+8. **Platform principles: everything is data, and every interaction is a label.** Attacks, checks, questions, scorecards, pricing curves, and eval cases are versioned config, never code; adding a fraud case is dropping a JSON file. Outcomes recalibrate pricing, reason codes earn or lose their weights, every miss auto-becomes a permanent eval case, arena attacks auto-become test assets, and no new version ships without beating the current one on the eval set (fail-closed gate). Full spec in PLATFORM.md. Demo moment: scam it once, it pays you; try the same scam twice, it is already in the immune system.
 
 ## 2. Why this wins
 
@@ -62,7 +63,7 @@ Team split (2 to 4): Nik as Launch Lead owns scorecard, ledger, policy gate, pit
 ## 7. One-day scope
 
 **Must ship (morning):** merchant simulator (honest + red-team personas as JSON config), underwriting engine covering pillars 1, 2, 3, 5 live (pillar 4 as seeded registry data, pillar 6 shown via the payout scene), deterministic scorecard with reason codes, tier gate, simulated ledger with authorize/hold/capture and reserves, gauntlet board UI with streaming.
-**Must ship (afternoon):** full gauntlet reliable end to end, adjudication card, payout flow, eval harness over the labeled merchant set with confusion matrix view, scam-our-agent form, deploy to Vercel, 30-second video.
+**Must ship (afternoon):** full gauntlet reliable end to end, adjudication card, payout flow, eval harness over the labeled merchant set with confusion matrix view, scam-our-agent form, the self-improving loop demo path (payout auto-creates an eval case, scorecard reversion passes the eval gate, same attack re-run and caught), deploy to Vercel, 30-second video.
 **Stretch:** registry page persisting scores across runs, Stripe test-mode manual-capture instead of the simulated ledger, downloadable signed evidence bundle.
 **Cut lines (pre-decided):** no real UCP/ACP network integration (ACP-shaped internal API only), no auth/user accounts, no mobile polish, labeled merchant set of about 12 to 15, not 100.
 
