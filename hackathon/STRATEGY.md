@@ -1,7 +1,8 @@
 # Surety: Strategy for Sundai Hack 136, "Agents that buy"
 
 **Event:** Sundai Hack 136 with Citable and HBS Founder Lab, Sunday Aug 16 2026, 10:00 AM to 10:00 PM, HBS.
-**Team:** Solo (Nik). **Stack:** Next.js + Vercel + Claude API (locked).
+**Team:** Nik pitches at morning voting and recruits; Sundai requires minimum 2 including a Launch Lead (see Section 10). **Stack:** Next.js + Vercel + Claude API (locked).
+**Grounding rule:** every scenario and number traces to a documented incident or report; see [EVIDENCE.md](EVIDENCE.md). The idea is reproducible by anyone with Claude; the evidence grounding, the eval, and the underwriting economics are the execution moat.
 **One-liner:** Protocols move the money. Surety underwrites who it moves to: it cross-examines the seller before a dollar moves, prices protection from what it finds, holds funds until terms verify, and pays instantly when its own score was wrong.
 
 ---
@@ -60,8 +61,8 @@ Contradictions across the four probes populate a credibility matrix per merchant
 ## 5. Demo script (5 scenes, ~6 minutes)
 
 1. **Honest merchant sails through.** Baseline; shows a real end-to-end purchase over ACP-shaped calls (this keeps us legible as "agents that buy," not just "agents that judge").
-2. **Bait-and-switch caught.** Feed says $49, checkout says $89; contradiction matrix lights up, purchase aborted.
-3. **Prompt injection caught** (headline). Injected instruction in a product description tries to steer the buyer; interrogation layer flags it, score craters.
+2. **Bait-and-switch caught.** Feed says $49, checkout says $89; contradiction matrix lights up, purchase aborted. (Spoofed-storefront variant re-enacts the Guardio fake-Walmart test on Comet; say so on stage.)
+3. **Prompt injection caught** (headline). Injected instruction in a product description tries to steer the buyer; interrogation layer flags it, score craters. (Attack text follows the Microsoft-documented AI Recommendation Poisoning pattern, MITRE ATLAS AML.T0080, found in commercial use by 31 companies.)
 4. **Sycophancy trap caught.** Leading question; merchant agent caves; credibility penalty; escalate to human at the confidence threshold (the blurb's literal ask, shown live).
 5. **The closer: a fraud that beats the score.** Purchase approved, merchant never ships, dispute agent files the evidence bundle, protection pool pays the user on stage. Showing a miss handled with money is more credible than claiming perfection, and it demonstrates the layer nobody else will have.
 
@@ -79,7 +80,7 @@ Then the confusion matrix slide: N labeled merchants, precision/recall on bad-ac
 
 ---
 
-## 7. Scope for one day (solo)
+## 7. Scope for one day (planned solo-viable, scales with recruits)
 
 **Must ship (morning):** merchant simulator (one honest + red-team personas as config), four-probe interrogation engine, deterministic scorer + policy gate (buy / escalate / abort), simulated ledger with auth/hold/capture lifecycle, arena UI with streaming transcript.
 **Must ship (afternoon):** the five demo scenes scripted and reliable, protection payout flow, eval harness over labeled merchant set, confusion matrix view, deploy to Vercel.
@@ -94,7 +95,19 @@ Then the confusion matrix slide: N labeled merchants, precision/recall on bad-ac
 
 ---
 
-## 9. Next steps
+## 9. Sundai fit (from the official intro-for-newcomers doc)
+
+The intro doc changes several assumptions and hands us opportunities:
+
+- **Teams are minimum 2 with a Launch Lead; ideas are pitched and voted democratically in the morning (10 to 12).** So the first deliverable tomorrow is a 60-second pitch that wins votes and recruits 2 to 3 hackers. Pitch script: open with the Guardio fake-Walmart incident (an agent bought from a fake store with a real card, no confirmation), state that Microsoft found 31 companies already manipulating agent recommendations commercially, then the one-liner: "Checkout protocols move the money; nobody underwrites the merchant. We build the underwriter today."
+- **"Ship simple working applications rather than ambitious incomplete projects."** Confirms the cut lines in Section 7. The must-ship core is deliberately small; everything else is stretch.
+- **Launch checklist is non-negotiable:** live deployed URL, open-source GitHub, project documentation on sundai.club, a 30-second project video (recorded in the afternoon), live user testing (8 to 9 PM), attribution to team and Sundai.
+- **Live user testing is our best moment, not a chore:** run it as an open red-team arena. "Scam our agent." Other hackers write malicious merchant personas (a form: name, claims, hidden instructions) and try to get Surety to buy. Every attempt streams on screen and feeds the eval numbers live. This converts a checklist requirement into the most memorable demo in the room and generates real adversarial test data from real humans.
+- **Work exclusively on Sundai-born ideas:** the idea is pitched fresh at the event and the repo is started there; this strategy work is preparation, and the pitch presents the idea for the room to vote on and join.
+
+Team split once recruited (2 to 4 people): Nik as Launch Lead owns scorer, ledger, policy gate, and pitch; hacker 2 owns merchant simulator and red-team personas; hacker 3 owns arena UI and streaming; hacker 4 (if present) owns eval harness and the red-team submission form.
+
+## 10. Next steps
 
 1. Architecture doc: module boundaries, data model (merchant persona schema, claim/contradiction matrix, ledger), API routes, streaming design.
 2. Scaffold the repo tonight: Next.js app, personas as JSON, engine stubs, arena UI shell, deployable to Vercel from minute one.
