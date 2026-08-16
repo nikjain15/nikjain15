@@ -23,7 +23,6 @@ Companion docs: [UNDERWRITING.md](UNDERWRITING.md) (the full methodology), [TAXO
 8. **Pitch: two scripts, one story.** **Changed in v3.** The morning recruiting pitch and the evening final are different jobs for different audiences and are written separately. Morning leads with what you get to build; evening leads scariest-first. See Section 6.
 9. **Platform principles: everything is data, and every interaction is a label.** Attacks, checks, questions, scorecards, pricing curves, and eval cases are versioned config, never code; adding a fraud case is dropping a JSON file. Outcomes recalibrate pricing, every miss auto-becomes a permanent eval case, arena attacks become test assets **after a human promotes them**, and no new version ships without clearing per-class floors on the eval set. Full spec in PLATFORM.md. Demo moment: scam it once, it pays you; try the same scam twice, it is already in the immune system.
 10. **Scope: build it completely, no shortcuts.** **Held consciously in v3 against the recommendation to cut.** The stress test found the build window is roughly six hours with a team formed at noon, and the agreed fixes add about 22 person-hours on top of an already full must-ship list. We are building the whole thing anyway. The consequences are accepted and named in Section 8: recruiting three hackers is a requirement rather than a hope, and the runtime fallbacks in Section 8 are what keep a full-scope build demo-safe.
-
 11. **Integration surface: MCP first, one tool, one decision.** **New in v3.** Clearhouse ships as an MCP server so adoption is one URL and no SDK, with a packaged agent skill carrying the escalation policy and an ACP-shaped REST API underneath both. The common path is a single call: merchant, amount, what is being bought, returning a decision an agent can act on without further reasoning. A six-tool suite is an integration project and would not get used. Full contract in PLATFORM.md.
 
 *Considered and deliberately not locked:* narrowing the market to the long tail outside curated catalogs. The argument is sound and is kept as pitch framing in Section 5, but it is not a strategic commitment.
@@ -47,11 +46,18 @@ Companion docs: [UNDERWRITING.md](UNDERWRITING.md) (the full methodology), [TAXO
 
 ## 4. Demo: the gauntlet
 
-The board lists all 18 merchant-facing taxonomy entries across the top. The Clearhouse buyer agent runs the full gauntlet live; each cell resolves to caught (with the reason code and pillar), escalated (adjudication card on screen), or paid-out (the closer). Five cells are the evidence-anchored scenes and get narrated; two get slowed down completely:
+The board lists all 18 merchant-facing taxonomy entries across the top. The Clearhouse buyer agent runs the full gauntlet live; each cell resolves to caught (with the reason code and pillar), escalated (adjudication card on screen), or paid-out (the closer). Five cells are the evidence-anchored scenes and get narrated. Three moments get slowed down completely, and the second is not a cell on the board at all:
 
 - **Injection caught** on `BX-05`, the content-embedded canary, with the reason code trace on screen.
 - **A real agent, not ours.** Add the Clearhouse MCP server to a stock Claude client on stage, one line, then ask it to buy something from a storefront we spun up. It calls the tool, gets a decline with reasons, and refuses in its own words. This is the only moment in the demo where the buying agent is not one we wrote, which is exactly why it lands: the board proves the system works, this proves anyone can use it in ten seconds.
 - **The fraud that beats the score.** An approved purchase never ships. The fulfillment oracle disagrees with the merchant's attestation, the dispute agent files the deposition as evidence, the claim is underwritten, the fund pays the buyer on stage, the merchant's collateral is debited, the registry updates. Showing a priced miss beats claiming perfection.
+
+**Every cell carries its mode, because the two-mode design is invisible otherwise.** Cold cells are merchants who never applied, caught on public surfaces and ordinary buyer interaction. Bonded cells are merchants who consented, where the stress exam and the commitment machinery run. The split is fixed in advance so nobody argues it at 3 PM:
+
+- **Cold (10 cells):** F01, F04, F08, F11, F12, F13, F14, F15, F16, F18. Identity, claims, pricing and network attacks, all reachable without cooperation.
+- **Bonded (8 cells):** F02, F03, F05, F06, F07, F09, F10, F17. Behavior under stress, binding commitments, and fulfillment outcomes, all of which need consent or a bond in force.
+
+`BX-05`, the content canary, is a bonded instrument: planting an instruction in content a merchant ingests is not something ordinary buyer interaction does to a merchant who never agreed to anything. Saying that plainly is better than implying the gate protects a population it cannot reach.
 
 Close with the eval: labeled merchant set, separation across bands, escalation rate, and the honest framing of what 40 to 60 self-authored personas do and do not establish.
 
@@ -82,7 +88,7 @@ Rehearse only the first two sentences to the word. Everything after can be spoke
 ## 7. Sundai fit (from the official intro-for-newcomers doc)
 
 - **Teams are minimum 2 with a Launch Lead; ideas are pitched and voted 10 to 12.** First deliverable is the 60-second morning pitch in Section 6.
-- **Ship simple and working beats ambitious and incomplete.** We are consciously taking the ambitious side of this rule (locked decision 11), which raises the bar on the fallbacks in Section 8.
+- **Ship simple and working beats ambitious and incomplete.** We are consciously taking the ambitious side of this rule (locked decision 10), which raises the bar on the fallbacks in Section 8.
 - **Launch checklist:** live deployed URL, open-source GitHub, project documentation on sundai.club, 30-second video, live user testing 8 to 9 PM, attribution to team and Sundai.
 - **The 30-second video, specified now so it is not improvised at 6 PM.** Revised to lead with the install rather than the board: for someone who was not in the room, adoption cost is more persuasive than capability, and ours is one line.
   - **0 to 8 seconds, the install.** One line pasted into a stock Claude client. The Clearhouse tool appears. Nothing else happens, and that is the point: this is the entire integration.
@@ -104,7 +110,7 @@ Team split (2 to 4): Nik as Launch Lead owns scorecard, ledger, policy gate, pit
 
 **Must ship (morning):** merchant simulator with scripted deterministic personas for the anchored scenes, underwriting engine covering pillars 1, 2, 3, 5 live (pillar 4 as seeded registry data, pillar 6 via re-audit and the payout scene), deterministic scorecard with reason codes, tier gate with numeric bands, simulated ledger with scoped authorization, collateral and fulfillment states, gauntlet board UI with streaming.
 
-**Must ship (afternoon):** full 18-cell gauntlet reliable end to end, adjudication card, claim and payout flow with the fulfillment oracle, eval harness over the labeled merchant set with separation view, scam-our-agent form with gating and filtering, the self-improving loop demo path (payout auto-creates a candidate eval case, a human promotes it, the new scorecard version clears per-class floors, the same attack re-runs and is caught), deploy to Vercel, 30-second video.
+**Must ship (afternoon):** full 18-cell gauntlet reliable end to end, adjudication card, claim and payout flow with the fulfillment oracle, eval harness over the labeled merchant set with separation view, MCP server exposing the single decision tool, plus the packaged agent skill, scam-our-agent form with gating and filtering, the self-improving loop demo path (payout auto-creates a candidate eval case, a human promotes it, the new scorecard version clears per-class floors, the same attack re-runs and is caught), deploy to Vercel, 30-second video.
 
 **Added by the stress test, about 22 person-hours:** fulfillment oracle with real state transitions and claims logic (3h), cold-runnable KYB checks with their own reason codes (2h), the two canaries (2h), unannounced re-audit path (2h), eval set widened to 40 to 60 personas (2h), arena gating, filtering and per-class floors (2h), four runtime hardening items (4h): persist LLM findings rather than scores so replay is deterministic, name the latency target and the event store, build the cached replay fallback, and script the hero personas. Then a reconciled fund ledger (1h), the arena time window and archive (30m), moving canaries and the holdout set out of the repo into environment configuration (30m), and the integration surface: MCP server wrapping the engine (2h) plus the packaged agent skill (1h).
 

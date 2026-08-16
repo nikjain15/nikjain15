@@ -20,11 +20,11 @@ Rules that make this safe:
 
 ### What is public and what is not
 
-Publishing the taxonomy is the point. Publishing the answer key is not. A scorecard whose exact thresholds and point values are public is a rubric adversaries optimize against directly, which is why no card network publishes its model features.
+Publishing the taxonomy is the point. In an open-source build the check manifest is readable anyway, so the honest line is not "we hide the rubric" but "only two things depend on staying unknown, and those are the two we keep out."
 
 - **Public:** the taxonomy, the methodology, the pillar structure, the reason-code vocabulary, the tier bands and the separation curve that produced them, the pricing formula, and the check point values. After the tier-derivation decision these are outputs of the eval rather than hand-set dials, and publishing them is part of the argument.
 - **Not in the repo:** canary strings (drawn from a rotating pool) and the holdout question set. These live in environment configuration, and the repository ships an example file with obviously fake values.
-- Arena responses show reason codes without point values, so the arena cannot be used to reverse the scorecard by probing it.
+- Because the rubric is public, the defense against optimizing against it is not secrecy but the holdout set and unannounced re-audit: a merchant that tunes to a published scorecard still has not seen the questions reserved for after approval.
 
 The repository is open source, which is a launch-checklist requirement and the right default. That is exactly why the two things that only work while unknown are kept out of it. A canary published alongside its own detection logic is a canary that catches nobody, and the room will be reading the repo during the arena hour.
 
@@ -36,8 +36,8 @@ The stress exam's variance test measures drift against a control merchant, so th
 
 ### Runtime shape
 
-- **Named event store.** The append-only log lives in a persistent store, not process memory, because serverless functions do not have a memory to keep it in and every projection depends on the log surviving a cold start.
-- **Latency target per underwriting file**, stated and measured, so "runs in seconds" is either true or reworded.
+- **The event store is Postgres** (Vercel Postgres or Neon), one append-only row per event, every projection rebuilt from it. Not process memory: serverless functions have no memory to keep it in, and the registry, the eval gate and replay all depend on the log surviving a cold start. Named here rather than left to whoever writes the first route.
+- **Latency target: under 30 seconds per underwriting file**, measured and shown. Anything slower is served from the cached path rather than making a room watch a spinner. If real timings say the target is wrong, change the target and change the positioning sentence with it, because "runs in seconds" is a written claim and has to stay true.
 - **Cached replay path.** Every gauntlet run is cached. A rate limit, a timeout, or dead conference wifi replays the last good result rather than showing a spinner to a room of judges.
 - **Scripted hero personas.** The narrated scenes run deterministic scripted merchants. LLM-driven personas are reserved for the arena, where unpredictability is the product rather than the risk.
 

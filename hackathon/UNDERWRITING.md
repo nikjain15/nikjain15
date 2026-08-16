@@ -112,6 +112,8 @@ Fingerprint match to a terminated merchant is deliberately not a hard gate; see 
 
 In cold mode, P3 evidence is thin and the pillar scores against a reduced maximum rather than being imputed. A thin pillar lowers the score, which is the honest treatment: absence of evidence is not evidence of honesty.
 
+**Cold scores are not renormalized, and the consequence is deliberate.** A cold file is scored on the full 1000-point scale with most of P3 unearned, so roughly a fifth of the scale is unavailable and the Clear band is effectively out of reach cold. The best outcome for a merchant nobody can examine is Conditional. This is the point rather than a defect: it is what makes the bonded ladder mean something concrete, and it is the number the merchant-side pitch points at. Renormalizing would make a cold file look like a bonded one and erase the distinction the whole two-mode design exists to draw. Say it on stage rather than letting someone find it.
+
 ### Reason codes
 Every point loss emits a code; decisions are replayable from codes alone.
 - `ID-xx` identity (ID-03: domain under 30 days; ID-07: no public registration found)
@@ -133,7 +135,7 @@ Bands are numeric because the scorecard claims to be deterministic, and a determ
 
 Working thresholds of 900 / 700 / 550 are the starting placeholders and are replaced by the derived values once the eval set runs. If a band cannot be justified from the curve, it does not ship as a number.
 
-Published bands are the public methodology. The point values behind individual checks are not published, for the same reason no card network publishes its model features.
+Published bands are the public methodology, along with the separation curve that produced them and the point values behind individual checks. In an open-source build the check manifest is readable anyway, and after the tier-derivation decision these are eval outputs rather than hand-set dials, so publishing them is part of the argument rather than a leak. The two things kept out of the repo are the canary strings and the holdout question set, which only work while unknown. See PLATFORM.md.
 
 ## 3. Pricing and escalation
 
