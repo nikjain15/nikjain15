@@ -55,7 +55,8 @@ The common path is a single call. Not a suite: a six-tool integration is a proje
 - `decision`: clear, conditional, refer, or decline. Instruction-shaped, not advisory.
 - `score` and `mode` (cold or bonded), because a cold 780 and a bonded 780 are not the same object.
 - `reasons`: top reason codes, each with plain text a model can repeat to a human. `ID-03: the domain is 19 days old` is actionable; `ID-03` alone is not.
-- `fee` and `guarantee_reference` when one is bound.
+- `covered`: true only for bonded merchants. Cold files return a decision and no guarantee, because the merchant funds the bond and a merchant who never applied has funded nothing. An agent must be able to tell advice from coverage without inferring it.
+- `fee` and `guarantee_reference`, present only when `covered` is true.
 - `escalation`: for refer, exactly what the human is being asked to decide, so the agent can render the adjudication card rather than invent a question.
 
 The tool is named for the moment it belongs to rather than the mechanism it implements, because that is what determines whether a model calls it at the right time.

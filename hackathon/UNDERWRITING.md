@@ -6,11 +6,17 @@ The methodology. Every mechanism here is a direct clone of one proven at card-ne
 
 Merchant diligence has always assumed the merchant applied. Ours often has not, so the file exists in two modes and every mechanism below is labeled by the mode it runs in.
 
-**Cold mode.** The merchant never applied to Clearhouse and never agreed to anything. We underwrite from publicly available surfaces and from ordinary buyer-shaped interaction: a customer asking a merchant questions is a customer, and we hold ourselves to that. Rate-limited, no probing beyond what a diligent human shopper would do. Cold files carry the widest uncertainty and the worst terms.
+**Cold mode: we score, we do not guarantee.** The merchant never applied to Clearhouse and never agreed to anything. We underwrite from publicly available surfaces and from ordinary buyer-shaped interaction: a customer asking a merchant questions is a customer, and we hold ourselves to that. Rate-limited, no probing beyond what a diligent human shopper would do.
 
-**Bonded mode.** The merchant applied to be bonded, consented to interrogation, and submitted evidence no cold check can reach. Consent unlocks the stress exam, the consent-gated identity checks, and unannounced re-audit. Bonded files are cheaper, faster, and clear at higher amounts. This is the ladder: a legitimate unknown merchant climbs it deliberately, and climbing it is the merchant-side product.
+A cold file answers one question: **should your agent buy from these people.** It returns a score, a decision, and reason codes. It does not return a guarantee, and there is no fee, because nobody has agreed to pay one. This follows from who pays: the merchant funds the bond, and a merchant who never applied has not funded anything. A guarantee issued against a merchant who never consented would be us writing protection on a stranger and billing nobody for it.
 
-The mode is recorded on every decision and shown on every score. A cold file scoring 780 and a bonded file scoring 780 are not the same object and are not priced the same.
+The buyer is not left with nothing. Scoped, revocable payment authority is a buyer-side control that needs no merchant participation, so a cold conditional decision means proceed under constrained authority, uncovered, with the reasons stated. Cold is information, and information priced at zero is still worth having when the alternative is what Comet did.
+
+**Bonded mode: we score and we cover.** The merchant applied to be bonded, consented to interrogation, and submitted evidence no cold check can reach. Consent unlocks the stress exam, the consent-gated identity checks, and unannounced re-audit. The bond is in force, the fee is priced from the file, collateral is posted, and the buyer is made whole when we are wrong. Bonded files are cheaper for the buyer to trust, faster to clear, and clear at higher amounts.
+
+**The ladder, stated as a mechanism rather than a slogan.** A cold merchant cannot reach the Clear band and cannot offer a guaranteed purchase, no matter how honest they are, because the evidence that would prove it requires their participation. Bonding is the only way up, and it is the merchant-side product: this is how a legitimate unknown merchant earns agent traffic.
+
+The mode is recorded on every decision and shown on every score. A cold file scoring 780 and a bonded file scoring 780 are not the same object: one is advice, the other is advice with money behind it.
 
 ## 1. The six evidence pillars
 
@@ -128,16 +134,24 @@ Bands are numeric because the scorecard claims to be deterministic, and a determ
 
 **How the thresholds are set.** Not by taste. Each boundary is placed where the labeled set actually separates: the clear threshold sits above the highest-scoring known fraud, the decline floor sits below the lowest-scoring known-honest merchant, and the refer band is the overlap region between them, which is exactly the range where a human label is worth most. The bands are therefore an output of the eval, published with the separation curve that produced them, and they move when the curve moves.
 
-- **Clear**: instant approve, minimal fee.
-- **Conditional**: guarantee issued, scoped token, rolling reserve, higher fee.
-- **Refer**: human adjudication card. Any unresolved high-materiality contradiction routes here regardless of score.
-- **Decline**: below the floor, or any hard gate.
+Tiers mean different things by mode, because cold files are scored and bonded files are covered.
+
+| Tier | Cold (advice only) | Bonded (advice plus a bond) |
+|---|---|---|
+| **Clear** | Not reachable cold: P3 is largely unearned | Instant approve, minimal fee |
+| **Conditional** | Proceed under scoped, revocable authority, uncovered, reasons stated. The ceiling for a cold file | Guarantee issued, scoped token, rolling reserve as collateral, higher fee |
+| **Refer** | Human adjudication card | Human adjudication card |
+| **Decline** | Do not buy | Do not bond, do not buy |
+
+Any unresolved high-materiality contradiction routes to Refer regardless of score or mode. Decline follows from the floor or any hard gate.
 
 Working thresholds of 900 / 700 / 550 are the starting placeholders and are replaced by the derived values once the eval set runs. If a band cannot be justified from the curve, it does not ship as a number.
 
 Published bands are the public methodology, along with the separation curve that produced them and the point values behind individual checks. In an open-source build the check manifest is readable anyway, and after the tier-derivation decision these are eval outputs rather than hand-set dials, so publishing them is part of the argument rather than a leak. The two things kept out of the repo are the canary strings and the holdout question set, which only work while unknown. See PLATFORM.md.
 
 ## 3. Pricing and escalation
+
+Everything in this section prices a bond, so it applies to bonded files. Cold files carry no fee because no one has agreed to pay one; what a cold file produces is the decision and the escalation judgment, both of which still run.
 
 ### What the labeled set does and does not establish
 The labeled merchant set validates **ranking**: does the scorecard order merchants correctly, do frauds concentrate in the low bands. It does not establish absolute probabilities. Roughly 40 to 60 self-authored personas can demonstrate separation; they cannot calibrate a price, and a band holding three merchants produces an estimate whose error bar covers the entire pricing range.
@@ -219,7 +233,9 @@ First-party and collusive claim fraud are named entries in the taxonomy, not an 
 
 ## 6. Thin files (cold start)
 
-A new honest merchant has no history. The answer is terms, not decline: conditional tier by default, higher fee, scoped authorization, rolling reserve, file thickens with every clean transaction until terms improve. Moving from cold to bonded is the fastest single improvement available, because consent unlocks the evidence that cold checks cannot reach.
+A newly bonded honest merchant has no history. The answer is terms, not decline: conditional tier by default, higher fee, scoped authorization, rolling reserve, file thickens with every clean transaction until terms improve.
+
+Applying for the bond is itself the fastest single improvement available, and it is a step change rather than an increment. It unlocks the consent-gated evidence, it unlocks the stress exam, and it is the only route to a guaranteed purchase at all, since cold files are scored and not covered. A merchant asking how to be trusted by buying agents has exactly one answer, and it is a form.
 
 This is also the merchant-side pitch: Clearhouse is how a legitimate unknown merchant earns agent traffic fast.
 
