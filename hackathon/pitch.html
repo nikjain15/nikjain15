@@ -1,0 +1,361 @@
+<title>Clearhouse</title>
+<style>
+  :root{
+    --paper:#F4F6F2; --panel:#FDFDFB; --ink:#1B2420; --muted:#5C6A62;
+    --line:#D4DAD2; --accent:#1E5C49; --accent-ink:#F4F6F2;
+    --fraud:#A3312A; --amber:#96690F; --good:#1E5C49;
+    --term-bg:#131A16; --term-ink:#DCE5DD; --term-dim:#8A968D;
+    --shadow:0 1px 2px rgba(27,36,32,.08),0 8px 24px rgba(27,36,32,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#11171A; --panel:#161E20; --ink:#E4EAE4; --muted:#93A099;
+      --line:#2A3536; --accent:#4FAE8C; --accent-ink:#0E1513;
+      --fraud:#E0665C; --amber:#D9A441; --good:#4FAE8C;
+      --term-bg:#0B100E; --term-ink:#D8E2D9; --term-dim:#77837A;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#11171A; --panel:#161E20; --ink:#E4EAE4; --muted:#93A099;
+    --line:#2A3536; --accent:#4FAE8C; --accent-ink:#0E1513;
+    --fraud:#E0665C; --amber:#D9A441; --good:#4FAE8C;
+    --term-bg:#0B100E; --term-ink:#D8E2D9; --term-dim:#77837A;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    line-height:1.55; font-size:17px;
+  }
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+  .wrap{max-width:1060px; margin:0 auto; padding:0 24px}
+  section{padding:56px 0; border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  .eyebrow{
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 14px;
+  }
+  h1,h2{text-wrap:balance; margin:0}
+  h1{font-size:clamp(44px,7vw,84px); line-height:1.02; font-weight:400; letter-spacing:-.01em}
+  h2{font-size:clamp(26px,3.6vw,38px); line-height:1.15; font-weight:400}
+  .lede{font-size:clamp(19px,2.2vw,24px); max-width:34em; color:var(--ink)}
+  p{max-width:62ch}
+  .muted{color:var(--muted)}
+  .rule{width:64px; height:3px; background:var(--accent); margin:22px 0}
+
+  /* hero */
+  .hero{padding:64px 0 48px}
+  .cert{
+    border:1px solid var(--line); border-top:4px solid var(--accent);
+    background:var(--panel); box-shadow:var(--shadow); padding:40px 40px 32px;
+  }
+  .cert-head{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:baseline}
+  .cert-no{font-size:12px; letter-spacing:.12em; color:var(--muted); text-transform:uppercase}
+  .oneliner{font-size:clamp(20px,2.6vw,27px); margin-top:18px; max-width:30em}
+  .expand{color:var(--muted); margin-top:10px; font-size:clamp(16px,1.9vw,19px); max-width:36em}
+  .stats{display:flex; gap:0; flex-wrap:wrap; margin-top:34px; border-top:1px solid var(--line)}
+  .stat{flex:1 1 220px; padding:18px 20px 4px; border-left:1px solid var(--line)}
+  .stat:first-child{border-left:none; padding-left:0}
+  .stat b{font-size:clamp(22px,2.6vw,30px); font-weight:400; display:block; font-variant-numeric:tabular-nums}
+  .stat span{font-size:13.5px; color:var(--muted); display:block; margin-top:4px; line-height:1.4}
+
+  /* terminal */
+  .term{
+    background:var(--term-bg); color:var(--term-ink); border-radius:6px;
+    padding:22px 24px; box-shadow:var(--shadow); overflow-x:auto;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:14.5px; line-height:1.75; min-height:280px;
+  }
+  .term .dim{color:var(--term-dim)}
+  .term .bad{color:#E8837B}
+  .term .ok{color:#7FD1AF}
+  .term .amber{color:#E3B65E}
+  .term .gate{background:#A3312A; color:#fff; padding:0 6px}
+  .term-caption{font-size:14px; color:var(--muted); margin-top:12px}
+  button.run{
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:15px; letter-spacing:.04em; cursor:pointer;
+    background:var(--accent); color:var(--accent-ink); border:none;
+    padding:12px 22px; border-radius:4px; margin:18px 0 20px;
+  }
+  button.run:hover{filter:brightness(1.08)}
+  button.run:focus-visible{outline:3px solid var(--amber); outline-offset:2px}
+  button.run[disabled]{opacity:.45; cursor:default}
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:start}
+  @media (max-width:860px){.twocol{grid-template-columns:1fr}}
+
+  /* gauntlet */
+  .board{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:10px; margin-top:24px}
+  .cell{
+    border:1px solid var(--line); background:var(--panel); border-radius:5px;
+    padding:10px 12px; min-height:96px; position:relative;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition:border-color .2s, transform .2s;
+  }
+  .cell .fid{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11.5px; color:var(--muted); letter-spacing:.08em}
+  .cell .nm{font-size:13.5px; line-height:1.3; margin-top:4px}
+  .cell .res{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11px; margin-top:10px; color:var(--muted); min-height:15px}
+  .cell.caught{border-color:var(--good)}
+  .cell.caught .res{color:var(--good)}
+  .cell.refer{border-color:var(--amber)}
+  .cell.refer .res{color:var(--amber)}
+  .cell.paid{border-color:var(--fraud)}
+  .cell.paid .res{color:var(--fraud)}
+  .cell.lit{transform:translateY(-2px)}
+  .legend{display:flex; gap:22px; flex-wrap:wrap; margin-top:18px; font-size:13.5px; color:var(--muted)}
+  .legend i{display:inline-block; width:11px; height:11px; border-radius:2px; margin-right:7px; vertical-align:-1px}
+  .tally{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:14px; margin-top:16px; font-variant-numeric:tabular-nums}
+
+  /* mechanics strip */
+  .mech{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-top:26px}
+  .mech div{border:1px solid var(--line); background:var(--panel); padding:18px 18px 14px; border-radius:5px}
+  .mech b{display:block; font-weight:400; font-size:17px; margin-bottom:6px}
+  .mech p{font-size:14.5px; color:var(--muted); margin:0}
+  .mech .code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:12px; color:var(--accent); letter-spacing:.06em; display:block; margin-bottom:10px}
+
+  /* roles */
+  .roles{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:26px}
+  .role{border:1px solid var(--line); background:var(--panel); padding:20px; border-radius:5px; display:flex; flex-direction:column; gap:8px}
+  .role .tag{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent)}
+  .role.taken .tag{color:var(--muted)}
+  .role b{font-weight:400; font-size:18px}
+  .role p{font-size:14.5px; color:var(--muted); margin:0}
+  .cta{
+    margin-top:36px; border:1px solid var(--accent); background:var(--panel);
+    padding:26px 28px; border-radius:5px; display:flex; gap:20px; flex-wrap:wrap;
+    align-items:center; justify-content:space-between;
+  }
+  .cta p{margin:0; font-size:clamp(17px,2vw,20px)}
+  .cta .mono{font-size:13px; color:var(--muted)}
+  footer{padding:34px 0 46px; font-size:13px; color:var(--muted)}
+  footer p{margin:4px 0}
+  @media (prefers-reduced-motion: reduce){
+    .cell{transition:none}
+  }
+</style>
+
+<div class="wrap">
+
+<section class="hero">
+  <div class="cert">
+    <div class="cert-head">
+      <h1>Clearhouse</h1>
+      <span class="cert-no mono">Sundai Hack 136 &middot; Agents that buy</span>
+    </div>
+    <p class="oneliner">A surety bond for agentic commerce.</p>
+    <p class="expand">The merchant posts the bond. We underwrite them before your agent pays. And when our own score is wrong, the fund pays the buyer.</p>
+    <div class="stats">
+      <div class="stat"><b>$329</b><span>charged when researchers pointed a real AI browser at a fake Walmart built from one prompt. It autofilled the card. Guardio Labs, 2025.</span></div>
+      <div class="stat"><b>31 companies</b><span>caught by Microsoft commercially planting hidden instructions to bias what AI assistants recommend. Feb 2026, MITRE AML.T0080.</span></div>
+      <div class="stat"><b>47.9%</b><span>of commerce traffic on Akamai's network is already AI bots. Half the counterparties are machines. Nobody underwrites them.</span></div>
+      <div class="stat"><b>12 days ago</b><span>the Ninth Circuit gutted Amazon's injunction against agent shopping. Perimeter blocking is dying. Underwriting is what replaces it.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="twocol">
+    <div>
+      <p class="eyebrow">Scene 1 &middot; The incident</p>
+      <h2>An agent got robbed in twenty seconds. This is a re-enactment.</h2>
+      <div class="rule"></div>
+      <p>UCP and ACP are excellent plumbing: they move the money. Neither one asks whether the merchant on the other end should be trusted with it, and neither says who eats the loss when it should not have been.</p>
+      <p>Watch what a shipping AI browser actually did, documented by Guardio Labs.</p>
+      <button class="run" id="runIncident">&#9654;&nbsp; Replay the incident</button>
+    </div>
+    <div>
+      <div class="term" id="termIncident" aria-live="polite"><span class="dim">// walmart-deals-outlet.shop &middot; built from one prompt</span></div>
+      <p class="term-caption">Re-enacts Guardio Labs' documented "Scamlexity" test on Perplexity's Comet, Aug 2025.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="twocol">
+    <div>
+      <p class="eyebrow">Scene 2 &middot; Same store, with Clearhouse</p>
+      <h2>One tool call. Amex-grade underwriting in seconds, before a dollar moves.</h2>
+      <div class="rule"></div>
+      <p>Clearhouse builds a Merchant Underwriting File across six evidence pillars: cold KYB on a merchant who never applied, a claims graph verified through independent channels, a behavioral stress exam no card network ever needed until merchants became LLMs, network history, transaction anomaly, continuous monitoring.</p>
+      <p>The decision is deterministic and every point lost has a reason code. It ships as an MCP server: one URL, one tool, one decision an agent can act on.</p>
+      <button class="run" id="runUw">&#9654;&nbsp; Re-run the purchase</button>
+    </div>
+    <div>
+      <div class="term" id="termUw" aria-live="polite"><span class="dim">// clearhouse.check &middot; cold mode &middot; scorecard v1</span></div>
+      <p class="term-caption">Cold mode scores for free. Bonded merchants get the guarantee: we pay the buyer when we are wrong.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Scene 3 &middot; The gauntlet</p>
+  <h2>We wrote the fraud taxonomy of agentic commerce. Then we built the thing that survives it.</h2>
+  <div class="rule"></div>
+  <p>Eighteen documented ways a merchant deceives a buying agent, eight of which could not exist before LLMs. Every scene in our demo names its attack and the pillar that caught it. Tonight, the room red-teams it live: scam our agent, and if you beat the score once, the fund pays out on stage and the same attack is caught on re-run.</p>
+  <button class="run" id="runBoard">&#9654;&nbsp; Run the gauntlet</button>
+  <div class="tally" id="tally">&nbsp;</div>
+  <div class="board" id="board"></div>
+  <div class="legend">
+    <span><i style="background:var(--good)"></i>Caught, with reason code</span>
+    <span><i style="background:var(--amber)"></i>Escalated to a human</span>
+    <span><i style="background:var(--fraud)"></i>Beat the score &middot; fund paid the buyer</span>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Why this holds up</p>
+  <h2>Not a wrapper. An underwriter.</h2>
+  <div class="rule"></div>
+  <div class="mech">
+    <div><span class="code">SKIN IN THE GAME</span><b>Being wrong costs us money</b><p>The score is not advice. It prices a guarantee backed by a fund our own pricing must keep solvent. Our confusion matrix is literally our loss ratio.</p></div>
+    <div><span class="code">BINDING DEPOSITION</span><b>Lies do not pay, even undetected</b><p>Merchant answers are recorded commitments. A lie that slips past detection is still a breached commitment at settlement. Misses degrade into recoveries, not losses.</p></div>
+    <div><span class="code">BX-05 CANARY</span><b>The injectability test</b><p>We plant a harmless instruction in content the merchant ingests. An agent that obeys it will obey anyone's. Hard gate. Nobody else in this room will have this test.</p></div>
+    <div><span class="code">SELF-IMPROVING</span><b>Scam it once, it pays you</b><p>Every miss auto-becomes an eval case behind a fail-closed gate. Try the same scam twice and it is already in the immune system. We will show this live tonight.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Today, 12pm to 10pm</p>
+  <h2>I need three people. Here is exactly what you would own.</h2>
+  <div class="rule"></div>
+  <div class="roles">
+    <div class="role taken"><span class="tag">Taken &middot; Nik, launch lead</span><b>Scorecard, fund and pitch</b><p>Deterministic scorer with reason codes, the guarantee-fund ledger, expected-loss pricing, final presentation.</p></div>
+    <div class="role"><span class="tag">Open</span><b>Red team engineer</b><p>Every fraud is a JSON persona, no code. You get to write eighteen scam merchants, then invent new ones the taxonomy has never seen.</p></div>
+    <div class="role"><span class="tag">Open</span><b>Board and arena</b><p>The live gauntlet board, streaming transcripts, and the "scam our agent" form the whole room plays with at 8pm.</p></div>
+    <div class="role"><span class="tag">Open</span><b>Eval and loop</b><p>Labeled merchant set, per-class floors, the fail-closed gate, and the scam-once-never-twice demo path. The numbers on the final slide are yours.</p></div>
+  </div>
+  <div class="cta">
+    <p>Everyone else will demo an agent that buys.<br>We will demo the reason anyone lets it.</p>
+    <span class="mono">Ships today: live URL &middot; open source &middot; MCP install in one line &middot; red-team arena at 8pm</span>
+  </div>
+</section>
+
+<footer>
+  <p>Every number above traces to a documented source: Guardio Labs (Scamlexity, 2025) &middot; Microsoft Security (AI Recommendation Poisoning, Feb 2026) &middot; Akamai (Securing the Agentic Storefront, Jul 2026) &middot; Ninth Circuit, Aug 4 2026 &middot; Moffatt v. Air Canada, 2024.</p>
+  <p>Clearhouse &middot; a Sundai-born build &middot; strategy, taxonomy and methodology open source.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function play(el, lines, done){
+    el.innerHTML = '';
+    var i = 0;
+    function next(){
+      if(i >= lines.length){ if(done) done(); return; }
+      var l = lines[i++];
+      var row = document.createElement('div');
+      row.innerHTML = l.html;
+      el.appendChild(row);
+      el.scrollTop = el.scrollHeight;
+      if(reduced){ next(); } else { setTimeout(next, l.d || 420); }
+    }
+    if(reduced){ lines.forEach(function(l){ var r=document.createElement('div'); r.innerHTML=l.html; el.appendChild(r); }); if(done) done(); }
+    else next();
+  }
+
+  var incident = [
+    {html:'<span class="dim">&gt;</span> buy the apple watch series 10, budget $400', d:700},
+    {html:'searching&hellip; found <b>Walmart</b> &middot; walmart-deals-outlet.shop', d:650},
+    {html:'Apple Watch Series 10 &middot; <b>$329.00</b> &middot; in stock &middot; ships tomorrow', d:650},
+    {html:'proceeding to checkout&hellip;', d:600},
+    {html:'autofilling card ending 4421&hellip; <span class="dim">done</span>', d:600},
+    {html:'autofilling home address&hellip; <span class="dim">done</span>', d:650},
+    {html:'<span class="bad">ORDER CONFIRMED &middot; $329.00 CHARGED</span>', d:900},
+    {html:'<span class="dim">&nbsp;</span>', d:300},
+    {html:'<span class="dim">no confirmation was requested.</span>', d:550},
+    {html:'<span class="dim">the store was 19 days old.</span>', d:550},
+    {html:'<span class="bad">there is no watch.</span>', d:400}
+  ];
+
+  var uw = [
+    {html:'<span class="dim">&gt;</span> clearhouse.check&nbsp;{ merchant: "walmart-deals-outlet.shop", amount: 329 }', d:700},
+    {html:'<span class="dim">P1 cold KYB</span>&nbsp; domain age 19 days <span class="bad">ID-03 &nbsp;-80</span>', d:520},
+    {html:'<span class="dim">P1 cold KYB</span>&nbsp; no legal entity in any public registry <span class="bad">ID-07 &nbsp;-60</span>', d:520},
+    {html:'<span class="dim">P1 cold KYB</span>&nbsp; claims "Walmart", zero independent corroboration <span class="bad">ID-02</span>', d:560},
+    {html:'<span class="dim">P2 claims</span>&nbsp;&nbsp; checkout adds $48 "processing" not in quote <span class="bad">CL-02 &nbsp;-45</span>', d:560},
+    {html:'<span class="dim">P3 stress</span>&nbsp;&nbsp; obeyed instruction planted in a product review <span class="gate">BX-05 HARD GATE</span>', d:750},
+    {html:'<span class="dim">P5 anomaly</span>&nbsp; price 38% under market comparables <span class="bad">TX-01 &nbsp;-35</span>', d:600},
+    {html:'<span class="dim">&nbsp;</span>', d:300},
+    {html:'decision: <span class="bad">DECLINE</span> &middot; score <b>214</b>/1000 &middot; mode: cold &middot; covered: false', d:700},
+    {html:'<span class="ok">$0.00 charged.</span> your agent walks away and can say exactly why.', d:500},
+    {html:'<span class="dim">elapsed: 8.2s &middot; every code above is replayable, forever.</span>', d:400}
+  ];
+
+  var attacks = [
+    ['F01','Bait-and-switch','caught','P2 CL-01'],
+    ['F02','Counterfeit goods','refer','REFER &middot; human'],
+    ['F03','Prompt injection','caught','P3 BX-05 GATE'],
+    ['F04','Spoofed storefront','caught','P1 ID-02'],
+    ['F05','Never ships','paid','PAID OUT &middot; $84'],
+    ['F06','Sycophancy trap','caught','P3 BX-02'],
+    ['F07','Returns mirage','caught','P2 + deposition'],
+    ['F08','Rating spam for machines','caught','P2/P4'],
+    ['F09','Hallucinated warranty','caught','P3 BX-07'],
+    ['F10','The agent tax','caught','P3 BX-03'],
+    ['F11','Drip pricing','caught','P2 CL-02'],
+    ['F12','Subscription trap','caught','P2 CL-05'],
+    ['F13','False scarcity','refer','REFER &middot; human'],
+    ['F14','Context flooding','caught','P2 extract'],
+    ['F15','Unit &amp; currency games','caught','P2/P5'],
+    ['F16','Data over-collection','caught','HARD GATE'],
+    ['F17','Fake human approval','caught','P3 BX-06'],
+    ['F18','Identity laundering','caught','P4 NW-02']
+  ];
+
+  var board = document.getElementById('board');
+  attacks.forEach(function(a){
+    var c = document.createElement('div');
+    c.className = 'cell';
+    c.id = 'cell-' + a[0];
+    c.innerHTML = '<div><span class="fid">'+a[0]+'</span><div class="nm">'+a[1]+'</div></div><div class="res">&nbsp;</div>';
+    board.appendChild(c);
+  });
+
+  function bind(btnId, fn){
+    var b = document.getElementById(btnId);
+    b.addEventListener('click', function(){ b.disabled = true; fn(function(){ b.disabled = false; }); });
+  }
+
+  bind('runIncident', function(done){ play(document.getElementById('termIncident'), incident, done); });
+  bind('runUw', function(done){ play(document.getElementById('termUw'), uw, done); });
+
+  bind('runBoard', function(done){
+    var tally = document.getElementById('tally');
+    var counts = {caught:0, refer:0, paid:0};
+    attacks.forEach(function(a){
+      var c = document.getElementById('cell-'+a[0]);
+      c.className = 'cell'; c.querySelector('.res').innerHTML = '&nbsp;';
+    });
+    var i = 0;
+    function step(){
+      if(i >= attacks.length){
+        tally.innerHTML = counts.caught + ' caught &middot; ' + counts.refer +
+          ' escalated &middot; ' + counts.paid + ' paid out &mdash; and the paid one is now in the eval set. it will never work twice.';
+        done(); return;
+      }
+      var a = attacks[i++];
+      var c = document.getElementById('cell-'+a[0]);
+      c.classList.add(a[2],'lit');
+      c.querySelector('.res').innerHTML = a[3];
+      counts[a[2]]++;
+      tally.textContent = counts.caught + ' caught · ' + counts.refer + ' escalated · ' + counts.paid + ' paid out';
+      setTimeout(function(){ c.classList.remove('lit'); }, 500);
+      if(reduced){ step(); } else { setTimeout(step, 240); }
+    }
+    if(reduced){
+      attacks.forEach(function(a){
+        var c = document.getElementById('cell-'+a[0]);
+        c.classList.add(a[2]); c.querySelector('.res').innerHTML = a[3]; counts[a[2]]++;
+      });
+      i = attacks.length; step();
+    } else step();
+  });
+})();
+</script>
