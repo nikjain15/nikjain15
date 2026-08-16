@@ -55,8 +55,8 @@
   @media (max-width:840px){ .flow{grid-template-columns:1fr} }
   .fstep{
     position:relative; border-radius:10px; background:var(--bg);
-    box-shadow:var(--card-shadow); padding:26px 18px 20px;
-    display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px;
+    box-shadow:var(--card-shadow); padding:28px 20px 22px;
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;
   }
   .fstep .badge{
     position:absolute; top:-13px; left:50%; transform:translateX(-50%);
@@ -69,10 +69,12 @@
     display:flex; align-items:center; justify-content:center; margin:8px 0 6px;
   }
   .fstep.bad .disc{background:var(--danger-soft); color:var(--danger)}
-  .fstep b{font-weight:600; font-size:16px; line-height:1.3; letter-spacing:-.01em}
-  .fstep span{font-size:13.5px; color:var(--slate); line-height:1.4; max-width:16em}
-  .fstep .verdicts{display:flex; gap:5px; flex-wrap:wrap; justify-content:center; margin-top:6px}
-  .fstep .v{font-size:11px; font-weight:600; border-radius:99px; padding:3px 10px}
+  .fstep b{font-weight:600; font-size:17px; line-height:1.3; letter-spacing:-.01em}
+  .fstep .desc{font-size:14px; color:var(--slate); line-height:1.45; max-width:17em; min-height:3.6em}
+  .fstep .verdicts{display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-top:auto; padding-top:14px}
+  .fstep .v{font-size:11px; font-weight:600; letter-spacing:.02em; border-radius:99px; padding:4px 11px}
+  .fstep .v.mut{background:var(--surface); color:var(--slate)}
+  .fstep .v.blu{background:var(--blurple-soft); color:var(--blurple)}
   .fstep .v.ok{background:var(--good-soft); color:#0E6245}
   .fstep .v.warn{background:var(--amber-soft); color:#983705}
   .fstep .v.ask{background:var(--blurple-soft); color:var(--blurple)}
@@ -179,20 +181,22 @@
       <span class="badge">1</span>
       <span class="disc"><svg class="ic" width="30" height="30" viewBox="0 0 24 24"><path d="M4 7l2-3h12l2 3M4 7h16v3a2.5 2.5 0 01-5 0 2.5 2.5 0 01-5 0 2.5 2.5 0 01-5 0zM5.5 12.5V20h13v-7.5"/><path d="M9.5 20v-4.5h5V20"/></svg></span>
       <b>Your agent finds a store</b>
-      <span>Any store. Even one that appeared last week and nobody has ever vetted.</span>
+      <span class="desc">Any store on the internet, including one that appeared last week and nobody has checked.</span>
+      <span class="verdicts"><span class="v mut">NEW</span><span class="v mut">UNKNOWN</span><span class="v mut">UNVETTED</span></span>
     </div>
     <div class="fstep">
       <span class="badge">2</span>
       <span class="disc"><svg class="ic" width="30" height="30" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/><path d="M8 10.5l1.8 1.8 3.2-3.6"/></svg></span>
       <b>We cross-examine it</b>
-      <span>6 tough questions, answered with evidence, in 8 seconds. Before any money moves.</span>
+      <span class="desc">Tough questions, answered with evidence, before any money moves. Every answer goes on record.</span>
+      <span class="verdicts"><span class="v blu">6 CHECKS</span><span class="v blu">8 SECONDS</span><span class="v blu">SCORED</span></span>
     </div>
     <div class="fstep">
       <span class="badge">3</span>
       <span class="disc"><svg class="ic" width="30" height="30" viewBox="0 0 24 24"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
       <b>Verdict, backed by money</b>
+      <span class="desc">One clear answer your agent can act on. And if a scam still gets through, we pay you back.</span>
       <span class="verdicts"><span class="v ok">BUY</span><span class="v warn">HOLD</span><span class="v ask">ASK YOU</span><span class="v no">WALK</span></span>
-      <span>One answer your agent can act on. And if a scam still gets through, the fund pays you back instantly.</span>
     </div>
   </div>
 </section>
