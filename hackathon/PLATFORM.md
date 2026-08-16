@@ -41,7 +41,40 @@ The stress exam's variance test measures drift against a control merchant, so th
 - **Cached replay path.** Every gauntlet run is cached. A rate limit, a timeout, or dead conference wifi replays the last good result rather than showing a spinner to a room of judges.
 - **Scripted hero personas.** The narrated scenes run deterministic scripted merchants. LLM-driven personas are reserved for the arena, where unpredictability is the product rather than the risk.
 
-## 2. The self-improving loop
+## 2. How Clearhouse is called
+
+A trust layer nobody can integrate protects nobody. Three layers ship, and they stack rather than compete: **MCP is the headline**, the **skill** carries the policy, and **REST** is the substrate under both.
+
+### One tool, one decision
+
+The common path is a single call. Not a suite: a six-tool integration is a project, and in an agent context it also crowds the model's tool list and gets called wrong. Everything else (claims, appeals, re-underwriting, registry lookup) is secondary surface the common path never touches.
+
+**The call:** merchant endpoint or URL, amount, currency, and what is being bought. Optionally the buyer's risk tolerance, which otherwise comes from the skill.
+
+**The response**, shaped so an agent can act on it without further reasoning:
+- `decision`: clear, conditional, refer, or decline. Instruction-shaped, not advisory.
+- `score` and `mode` (cold or bonded), because a cold 780 and a bonded 780 are not the same object.
+- `reasons`: top reason codes, each with plain text a model can repeat to a human. `ID-03: the domain is 19 days old` is actionable; `ID-03` alone is not.
+- `fee` and `guarantee_reference` when one is bound.
+- `escalation`: for refer, exactly what the human is being asked to decide, so the agent can render the adjudication card rather than invent a question.
+
+The tool is named for the moment it belongs to rather than the mechanism it implements, because that is what determines whether a model calls it at the right time.
+
+### The three layers
+
+| Layer | What it is | Why it exists |
+|---|---|---|
+| **MCP server** | One URL added to any MCP client, and the tool appears | Ten-second install, no SDK, works with any agent. This is the demo: add one line, tell the agent to buy from a store we spun up, watch it refuse and explain why |
+| **Agent skill** | Packaged policy: when to underwrite, what tolerance applies, when to stop and ask a human | The event's literal question is at what confidence an agent escalates. The skill is that answer as a shippable artifact rather than a formula in a document |
+| **REST API** | ACP-shaped endpoints under both | The substrate we build regardless, and the path for anyone not on MCP |
+
+### The honest limit
+
+MCP means the agent chooses to call us. We do not intercept, and an agent that never calls is never protected. Sitting in the payment path would fix that and would also put us back in the flow of funds, which the surety structure deliberately moved out of. So the answer to "why would an agent call?" has to be the guarantee itself: calling is what makes the buyer whole when the merchant lies. A trust signal nobody is obliged to check has to be worth checking.
+
+The MCP endpoint inherits every arena control. Merchant content arriving through it is untrusted data, never instructions, and it is rate-limited on the same basis.
+
+## 3. The self-improving loop
 
 Every interaction emits structured events into an append-only log: underwriting file, decision with reason codes and versions, transaction outcome (delivered, as described, refund honored, payout), human adjudication verdicts, and every arena attack attempt. Each event type closes a specific loop:
 
@@ -59,13 +92,13 @@ The arena is an open text input from an adversarial room into an LLM and onto a 
 - Submission content is **filtered before it renders** on the board.
 - Merchant and submission content reaches the underwriter as **untrusted data, never as instructions**, with findings returned through a constrained schema. Attacking the underwriter directly is F21 in the taxonomy, and the arena is where it will be attempted first.
 
-## 3. Why this architecture scales
+## 4. Why this architecture scales
 
 - **Append-only event log as the source of truth.** Ledger, decisions, fulfillment states, and transcripts are events; every view (scores, registry, dashboards, eval results) is a projection that can be rebuilt. This is what makes replay, audit, and recalibration cheap, and it is the same event-driven discipline used in money-critical systems.
 - **Network effects are built in.** Every buyer's interactions thicken every merchant's file; every promoted arena attack hardens every future decision. The registry (Pillar 4) compounds the way consortium data compounds for card networks, and it carries the notice, appeal and expiry obligations that a negative file has to carry.
 - **Check effectiveness dashboard.** Per reason code: hit rate, precision, points contributed. Pruning and promotion are visible, not folklore.
 
-## 4. The demo moment this unlocks
+## 5. The demo moment this unlocks
 
 Live on stage, during the arena hour:
 1. A red-team persona beats the score; the fund pays out.
@@ -74,7 +107,7 @@ Live on stage, during the arena hour:
 
 Line for the room: "Scam it once, it pays you. Try the same scam twice, it is already in the immune system." No other team will show their system improving during the demo.
 
-## 5. Hackathon scope of the loop
+## 6. Hackathon scope of the loop
 
 Must ship: versioned scorecard and check manifest, append-only decision log in a persistent store, findings-level persistence so replay is deterministic, payout-to-candidate-case automation, the human promotion gate, the eval gate with per-class floors, arena rate limiting and content filtering, and the scam-once-never-twice demo path.
 
