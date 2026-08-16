@@ -22,7 +22,7 @@ Companion docs: [UNDERWRITING.md](UNDERWRITING.md) (the full methodology), [TAXO
 7. **Stack:** Next.js + Vercel + Claude API, with a named persistent store for the event log rather than process memory, and a cached replay path so a rate limit does not become a blank screen.
 8. **Pitch: two scripts, one story.** **Changed in v3.** The morning recruiting pitch and the evening final are different jobs for different audiences and are written separately. Morning leads with what you get to build; evening leads scariest-first. See Section 6.
 9. **Platform principles: everything is data, and every interaction is a label.** Attacks, checks, questions, scorecards, pricing curves, and eval cases are versioned config, never code; adding a fraud case is dropping a JSON file. Outcomes recalibrate pricing, every miss auto-becomes a permanent eval case, arena attacks become test assets **after a human promotes them**, and no new version ships without clearing per-class floors on the eval set. Full spec in PLATFORM.md. Demo moment: scam it once, it pays you; try the same scam twice, it is already in the immune system.
-10. **Scope: build it completely, no shortcuts.** **Held consciously in v3 against the recommendation to cut.** The stress test found the build window is roughly six hours with a team formed at noon, and the agreed fixes add about 17 person-hours on top of an already full must-ship list. We are building the whole thing anyway. The consequences are accepted and named in Section 8: recruiting three hackers is a requirement rather than a hope, and the runtime fallbacks in Section 8 are what keep a full-scope build demo-safe.
+10. **Scope: build it completely, no shortcuts.** **Held consciously in v3 against the recommendation to cut.** The stress test found the build window is roughly six hours with a team formed at noon, and the agreed fixes add about 19 person-hours on top of an already full must-ship list. We are building the whole thing anyway. The consequences are accepted and named in Section 8: recruiting three hackers is a requirement rather than a hope, and the runtime fallbacks in Section 8 are what keep a full-scope build demo-safe.
 
 *Considered and deliberately not locked:* narrowing the market to the long tail outside curated catalogs. The argument is sound and is kept as pitch framing in Section 5, but it is not a strategic commitment.
 
@@ -60,10 +60,17 @@ Close with the eval: labeled merchant set, separation across bands, escalation r
 
 ## 6. The two pitches
 
-**Morning, 60 seconds, to recruit.** The room is choosing what to build, not what to invest in. Lead with the build.
-1. What you get to build: an arena where an AI merchant tries to scam an AI buyer, live, and at 8 PM everyone in this room gets to try to break it.
-2. Fifteen seconds of stakes: Guardio built a fake Walmart from one prompt and Comet bought an Apple Watch from it, no questions asked.
-3. The one-liner, then the ask **by name**: a hacker for the red-team personas and merchant simulator, a hacker for the gauntlet board and streaming, a hacker for the eval harness and the arena form. Three seats, named out loud, because a vote is not a teammate.
+**Morning, 60 seconds, to recruit.** The room is choosing what to build, not what to invest in. Lead with the build. Written verbatim because 60 seconds is short enough that a wandering first sentence costs a third of it.
+
+> **[memorize these two sentences]** I am building an AI merchant that lies, and an AI buyer that catches it. At 8 o'clock tonight, every person in this room gets to try to scam it, live, on that screen.
+>
+> This is not hypothetical. Researchers built a fake Walmart storefront with a single prompt, pointed Perplexity's browser at it, and it bought an Apple Watch. Real card, no questions, no confirmation.
+>
+> Clearhouse is a surety bond for agentic commerce. The merchant posts the bond, we underwrite them before your agent pays, and we pay the buyer when our own score is wrong.
+>
+> I need three people. One to build the merchants that lie. One to build the board where you watch them get caught. One to build the eval and the arena. Come find me.
+
+Rehearse only the first two sentences to the word. Everything after can be spoken from the structure, and should be, so it does not sound recited. The three seats get named out loud because a vote is not a teammate.
 
 **Evening final, scariest-first, as originally locked.** Open with the Guardio incident, then Microsoft's 31 companies, then the one-liner, then the gauntlet, then the priced miss, then the eval.
 
@@ -75,6 +82,7 @@ Close with the eval: labeled merchant set, separation across bands, escalation r
 - **The 30-second video, specified now so it is not improvised at 6 PM.** Five seconds of the 18-cell board filling in time-lapse, for scale. Twenty seconds slowed down on the priced miss: an approved purchase never ships, the oracle contradicts the merchant's attestation, the claim is underwritten, the buyer is paid, the collateral is debited. Five seconds on the one-liner card. It is the artifact most likely to be watched by people who were not in the room, and the payout is the thing no other team can show. Record it in the afternoon against the cached replay path, not against a live run.
 - **First-time visitor path.** The live URL opens on a single primed run: one merchant, one purchase, the file building live with reason codes appearing, resolving in under 60 seconds without any input. Second click is "attack it yourself" into the arena form. A visitor who does nothing still sees the product work.
 - **Live user testing as an open red-team arena: "Scam our agent."** Other hackers submit malicious merchant personas through a form and try to get Clearhouse to buy. Every attempt streams on the board and feeds the eval numbers. Submissions are rate-limited, content-filtered before they render, treated as untrusted data by the underwriter, and promoted into the eval set by a human rather than automatically. See PLATFORM.md.
+- **The arena is open during the 8 to 9 PM window only, then becomes a read-only archive.** The deployed URL stays live and public, as the checklist requires, and every attempt with its verdict stays visible afterward, which is a better artifact for a judge reviewing later than a dead form. It also means an unauthenticated endpoint calling a paid API is not left standing open on the indexed internet after everyone goes home.
 - **Sundai-born ideas rule:** this work is preparation and evidence; the idea is pitched fresh at the event for the room to vote on and join.
 
 Team split (2 to 4): Nik as Launch Lead owns scorecard, ledger, policy gate, pitch. Hacker 2: merchant simulator and red-team personas. Hacker 3: gauntlet board UI and streaming. Hacker 4: eval harness and the scam-our-agent submission form.
@@ -87,7 +95,9 @@ Team split (2 to 4): Nik as Launch Lead owns scorecard, ledger, policy gate, pit
 
 **Must ship (afternoon):** full 18-cell gauntlet reliable end to end, adjudication card, claim and payout flow with the fulfillment oracle, eval harness over the labeled merchant set with separation view, scam-our-agent form with gating and filtering, the self-improving loop demo path (payout auto-creates a candidate eval case, a human promotes it, the new scorecard version clears per-class floors, the same attack re-runs and is caught), deploy to Vercel, 30-second video.
 
-**Added by the stress test, about 17 person-hours:** fulfillment oracle with real state transitions and claims logic (3h), cold-runnable KYB checks with their own reason codes (2h), the two canaries (2h), unannounced re-audit path (2h), eval set widened to 40 to 60 personas (2h), arena gating, filtering and per-class floors (2h), and four runtime hardening items (4h): persist LLM findings rather than scores so replay is deterministic, name the latency target and the event store, build the cached replay fallback, and script the hero personas.
+**Added by the stress test, about 19 person-hours:** fulfillment oracle with real state transitions and claims logic (3h), cold-runnable KYB checks with their own reason codes (2h), the two canaries (2h), unannounced re-audit path (2h), eval set widened to 40 to 60 personas (2h), arena gating, filtering and per-class floors (2h), four runtime hardening items (4h): persist LLM findings rather than scores so replay is deterministic, name the latency target and the event store, build the cached replay fallback, and script the hero personas. Then a reconciled fund ledger (1h), the arena time window and archive (30m), and moving canaries and the holdout set out of the repo into environment configuration (30m).
+
+**The fund is a real ledger, not a display.** Fund balance, fees collected, merchant collateral and payouts reconcile as double-entry across the whole gauntlet run, all clearly labeled simulated. The payout scene debits the fund and the merchant's collateral on screen. This is the one place where a judge may add up the numbers, and reconciling arithmetic is a stronger signal than a convincing-looking figure.
 
 **Runtime rules, non-negotiable:** every gauntlet run is cached so a rate limit or a dead network replays the last good result instead of showing a spinner; the eval results page is precomputed; the hero-path personas are scripted, not LLM-improvised, so the attacker cannot decline to attack in front of judges.
 

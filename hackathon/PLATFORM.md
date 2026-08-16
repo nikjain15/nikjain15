@@ -22,9 +22,11 @@ Rules that make this safe:
 
 Publishing the taxonomy is the point. Publishing the answer key is not. A scorecard whose exact thresholds and point values are public is a rubric adversaries optimize against directly, which is why no card network publishes its model features.
 
-- **Public:** the taxonomy, the methodology, the pillar structure, the reason-code vocabulary, the tier bands, the pricing formula.
-- **Private:** canary strings (drawn from a rotating pool), individual check point values, exact thresholds inside bands, and the holdout question set.
+- **Public:** the taxonomy, the methodology, the pillar structure, the reason-code vocabulary, the tier bands and the separation curve that produced them, the pricing formula, and the check point values. After the tier-derivation decision these are outputs of the eval rather than hand-set dials, and publishing them is part of the argument.
+- **Not in the repo:** canary strings (drawn from a rotating pool) and the holdout question set. These live in environment configuration, and the repository ships an example file with obviously fake values.
 - Arena responses show reason codes without point values, so the arena cannot be used to reverse the scorecard by probing it.
+
+The repository is open source, which is a launch-checklist requirement and the right default. That is exactly why the two things that only work while unknown are kept out of it. A canary published alongside its own detection logic is a canary that catches nobody, and the room will be reading the repo during the arena hour.
 
 ### Determinism, honestly
 
@@ -52,7 +54,7 @@ Every interaction emits structured events into an append-only log: underwriting 
 
 ### Arena safety
 
-The arena is an open text input from an adversarial room into an LLM and onto a projector. Three controls, all cheap:
+The arena is an open text input from an adversarial room into an LLM and onto a projector. It accepts submissions during the 8 to 9 PM window only and becomes a read-only archive afterward, so an unauthenticated endpoint calling a paid API is not left open on the indexed internet, and every attempt with its verdict stays visible for anyone reviewing the project later. Three further controls, all cheap:
 - Submissions are **rate-limited** and size-capped.
 - Submission content is **filtered before it renders** on the board.
 - Merchant and submission content reaches the underwriter as **untrusted data, never as instructions**, with findings returned through a constrained schema. Attacking the underwriter directly is F21 in the taxonomy, and the arena is where it will be attempted first.
