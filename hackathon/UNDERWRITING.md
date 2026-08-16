@@ -1,6 +1,6 @@
 # The Clearhouse Merchant Underwriting File
 
-The methodology. Every mechanism here is a direct clone of one proven at Amex, Visa, or acquirer scale, translated to agent-to-agent commerce. Interrogation is two pillars of six: a real underwriter builds a file, it does not run a quiz.
+The methodology. Every mechanism here is a direct clone of one proven at card-network or acquirer scale, translated to agent-to-agent commerce. Interrogation is two pillars of six: a real underwriter builds a file, it does not run a quiz.
 
 ## 0. Two modes: cold and bonded
 
@@ -124,10 +124,14 @@ Every point loss emits a code; decisions are replayable from codes alone.
 ### Tiers
 Bands are numeric because the scorecard claims to be deterministic, and a deterministic system with adjectives for thresholds is not one.
 
-- **Clear** (900 to 1000): instant approve, minimal fee.
-- **Conditional** (700 to 899): guarantee issued, scoped token, rolling reserve, higher fee.
-- **Refer** (550 to 699, or any unresolved high-materiality contradiction at any score): human adjudication card.
-- **Decline** (below 550, or any hard gate).
+**How the thresholds are set.** Not by taste. Each boundary is placed where the labeled set actually separates: the clear threshold sits above the highest-scoring known fraud, the decline floor sits below the lowest-scoring known-honest merchant, and the refer band is the overlap region between them, which is exactly the range where a human label is worth most. The bands are therefore an output of the eval, published with the separation curve that produced them, and they move when the curve moves.
+
+- **Clear**: instant approve, minimal fee.
+- **Conditional**: guarantee issued, scoped token, rolling reserve, higher fee.
+- **Refer**: human adjudication card. Any unresolved high-materiality contradiction routes here regardless of score.
+- **Decline**: below the floor, or any hard gate.
+
+Working thresholds of 900 / 700 / 550 are the starting placeholders and are replaced by the derived values once the eval set runs. If a band cannot be justified from the curve, it does not ship as a number.
 
 Published bands are the public methodology. The point values behind individual checks are not published, for the same reason no card network publishes its model features.
 
@@ -171,7 +175,7 @@ Every worked figure in the pitch is computed from this formula, not asserted alo
 
 ## 4. Mechanism design: lies must not pay, even undetected
 
-Amex does not prevent all fraud; it prices fraud and makes it recoverable. The structure we clone is older than card networks: **the surety bond**. The merchant is the principal and posts the bond, the buyer is the obligee and gets paid when the principal defaults, and the surety pays first and recovers from the principal afterward. Three consequences follow, and they answer the obvious objection about who funds the score.
+Card networks do not prevent all fraud; they price it and make it recoverable. The structure we clone is older than card networks: **the surety bond**. The merchant is the principal and posts the bond, the buyer is the obligee and gets paid when the principal defaults, and the surety pays first and recovers from the principal afterward. Three consequences follow, and they answer the obvious objection about who funds the score.
 
 1. **Binding deposition.** Merchant answers are recorded commitments. Settlement is authorized only against the transcript: price, fees, delivery, refund terms. Delivered reality contradicting the deposition is a breached commitment with a recorded record of what was promised.
 2. **Scoped, revocable payment authority.** Clearhouse does not hold the buyer's money. It issues a guarantee and constrains the payment authority: ACP Shared Payment Tokens are scoped to a specific business and limited by amount and time, and they are revocable. Money that has not become final is money a breach can still stop. When a breach lands after finality, the fund pays the buyer and the recovery runs against the principal.
