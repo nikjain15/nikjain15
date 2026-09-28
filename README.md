@@ -21,6 +21,7 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 | Product | What it is | Proof | Links |
 |---|---|---|---|
 | **Conduit** | AI control plane: routing, fallback, eval gates, guardrails, MCP gateway, cost caps | 10 packages · MIT · CI · fail-closed evals | [console](https://nikjain15.github.io/conduit) · [code](https://github.com/nikjain15/conduit) |
+| **Relay** | Agent layer for financial advisors: 18 agents read the book, draft and prepare; a person sends | zero outbound send path · 344 tests · 585-message eval harness | [live](https://nikjain15.github.io/relay/) · [code](https://github.com/nikjain15/relay) |
 | **Penny (FounderFirst)** | Autonomous bookkeeping agent (early access) | 82.5% resolved with zero model calls · 85.6% macro-F1 | [site](https://founderfirst.one) · [code](https://github.com/nikjain15/founderfirst.one) |
 | **RoleOS** | Agentic job search over a live index of 1,536 postings across 294 AI-native companies | human-gated outbound, enforced by architecture tests | [live](https://ro.roleos.fyi) · [code](https://github.com/nikjain15/roleos-app) |
 | **Pulse** | Project tracking that fills itself in | 934 tests · deterministic guard: 100% must-block recall on a labeled harness | [live](https://pulsecohort.vercel.app) · [code](https://github.com/nikjain15/pulse) |
@@ -87,6 +88,26 @@ The thesis, learned the expensive way: **every AI system needs a deterministic b
 
 **Stack:** TypeScript monorepo (10 packages) · pluggable provider adapters · HTTP + MCP gateway · React console · fail-closed eval gates
 **Where it is now:** open source, CI green, live console in demo mode. The four products below embed it.
+
+<br>
+
+### ⭐ Relay: *the agent layer after the insight engine* &nbsp;·&nbsp; [live →](https://nikjain15.github.io/relay/) &nbsp;·&nbsp; [code →](https://github.com/nikjain15/relay)
+
+**Eighteen agents read an advisor's whole book, cite every claim, and prepare every action short of the human gate.**
+
+**The problem.** A wealth manager's AI can flag twenty million client opportunities a year. What it can't do is turn one into a documented, approved, client-facing action, the part between the insight and the send.
+
+**What I built.** Relay: an agent layer that reads the book on a cadence and hands a person the finished decision. Eight agents mirror real compliance desks (Reg BI review, complaints, vulnerable-client protection, sales practice, and more), reading the corpus for what a rule names and leaving a hold, a log entry, or a rewrite for review. Ten more research, rank, draft, and simulate the consequences of every proposed action against a copy of the household before it's ever shown.
+
+**Why it's different**
+
+- **The model never decides.** Ranking, eligibility, and recipients are deterministic code, not a model call, enforced by a dependency rule the build fails on.
+- **No outbound send path exists in the codebase.** Not a permission, an absence: enforced by `dependency-cruiser` and a CSP that blocks it, with a test that watches it stay broken.
+- **Nothing clears its own findings.** Every hold, draft, and proposed action waits for a person; `requiresHuman` is load-bearing, not a UI label.
+- **An eval harness that doesn't grade its own homework.** Expected outputs are recomputed from raw CSVs with zero shared code, checked against hand-labeled expectations across 300 synthetic households and 585 messages, in CI.
+
+**Stack:** Next.js 15 · React 19 · TypeScript · static export · zero model or network runtime dependencies
+**Where it is now:** working prototype, live demo, 344 tests, 67 browser checks across 5 breakpoints, every client and message synthetic.
 
 <br>
 
