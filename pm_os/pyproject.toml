@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pm-os"
+version = "0.1.0"
+description = "Portfolio Management OS: a fixed income SMA analyst agent on real public data (SEC N-PORT, U.S. Treasury)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=1.0",
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "mcp>=1.2",
+]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.30", "plotly>=5.0"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+pm-os = "pm_os_agent.cli:main"
+pm-os-mcp = "pm_os_mcp.server:main"
+
+[tool.setuptools]
+packages = ["engine", "data", "data.connectors", "agent", "pm_os_mcp", "pm_os_agent"]
+
+[tool.setuptools.package-data]
+data = ["assumptions.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

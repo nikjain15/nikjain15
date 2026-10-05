@@ -1,0 +1,65 @@
+{
+  "_readme": "ASSUMPTIONS: the only inputs in PM-OS that are not observed market data. Edit freely; every tool echoes the values it used.",
+
+  "tax": {
+    "_source": "Assumed top-bracket client. Federal ordinary 37% + 3.8% NIIT; long-term capital gains 20% + 3.8% NIIT.",
+    "ordinary_rate": 0.37,
+    "niit_rate": 0.038,
+    "tey_rate": 0.408,
+    "capital_gains_rate": 0.238
+  },
+
+  "strategies": {
+    "_source": "Duration bands paraphrased from public descriptions of fixed income SMA strategies; sector caps and rating floor are ASSUMED mandate limits.",
+    "intermediate_muni": {
+      "label": "Intermediate Municipal (assumed mandate)",
+      "duration_band": [3.0, 5.0],
+      "sector_caps": {"default": 0.30, "GO": 0.60, "Education_K12": 0.40},
+      "rating_floor": "BBB-"
+    },
+    "limited_duration_muni": {
+      "label": "Limited Duration Municipal (assumed mandate)",
+      "duration_band": [2.0, 3.0],
+      "sector_caps": {"default": 0.30, "GO": 0.60, "Education_K12": 0.40},
+      "rating_floor": "BBB-"
+    }
+  },
+
+  "funds": {
+    "intermediate_muni": {
+      "label": "Fidelity Intermediate Municipal Income Fund (public N-PORT filing)",
+      "cik": 215829,
+      "registrant": "Fidelity School Street Trust",
+      "series_name_contains": "Intermediate Municipal Income",
+      "default_strategy": "intermediate_muni",
+      "_verified_from": "https://www.sec.gov/Archives/edgar/data/215829/000021582926000017/filing10988.htm (497K for this fund, filed under CIK 215829)"
+    },
+    "limited_term_muni": {
+      "label": "Fidelity Limited Term Municipal Income Fund (public N-PORT filing)",
+      "cik": 35373,
+      "registrant": "Fidelity Municipal Trust",
+      "series_name_contains": "Limited Term Municipal Income",
+      "default_strategy": "limited_duration_muni",
+      "_verified_from": "https://www.sec.gov/Archives/edgar/data/35373/000137949118004626/filing409868799.htm (fund document filed under CIK 35373)"
+    }
+  },
+
+  "sma_sample": {
+    "_source": "SMA sizing assumption: real bonds, prices and yields; par per bond is set to equal-weight odd lots.",
+    "n_bonds": 30,
+    "account_size": 1500000,
+    "min_lot": 25000,
+    "max_lot": 125000,
+    "lot_increment": 5000
+  },
+
+  "cost_basis": {
+    "_source": "Funds do not publish lot-level cost. Default: the bond's price in an N-PORT filing ~1 year earlier, or a user upload in data/user/overrides.csv.",
+    "prior_filings_back": 4
+  },
+
+  "defaults": {
+    "fund": "intermediate_muni",
+    "portfolio_view": "sma"
+  }
+}

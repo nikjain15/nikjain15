@@ -1,0 +1,5 @@
+{
+  "servers": {
+    "pm-os": { "type": "stdio", "command": "pm-os-mcp" }
+  }
+}
