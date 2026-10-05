@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "pm-os": { "command": "pm-os-mcp" }
+  }
+}

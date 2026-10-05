@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SYNTHETIC test fixture: mimics the N-PORT primary_doc.xml layout to test
+     the parser offline. Not real holdings; never shown in the demo. -->
+<edgarSubmission xmlns="http://www.sec.gov/edgar/nport" xmlns:com="http://www.sec.gov/edgar/common">
+  <headerData><submissionType>NPORT-P</submissionType></headerData>
+  <formData>
+    <genInfo>
+      <regName>TEST TRUST</regName>
+      <regCik>0000000001</regCik>
+      <seriesName>Test Intermediate Municipal Income Fund</seriesName>
+      <seriesId>S000000001</seriesId>
+      <repPdEnd>2026-06-30</repPdEnd>
+      <repPdDate>2026-06-30</repPdDate>
+    </genInfo>
+    <fundInfo><totAssets>1000000</totAssets><netAssets>990000</netAssets></fundInfo>
+    <invstOrSecs>
+      <invstOrSec>
+        <name>TEST CITY HOSP REV</name><title>TEST CITY HOSP REV 5% 07/01/2034</title>
+        <cusip>000000AA1</cusip><balance>1000000</balance><units>PA</units><curCd>USD</curCd>
+        <valUSD>1050000</valUSD><pctVal>1.06</pctVal><payoffProfile>Long</payoffProfile>
+        <assetCat>DBT</assetCat><issuerCat>MUN</issuerCat><invCountry>US</invCountry>
+        <fairValLevel>2</fairValLevel>
+        <debtSec><maturityDt>2034-07-01</maturityDt><couponKind>Fixed</couponKind><annualizedRt>5</annualizedRt>
+          <isDefault>N</isDefault></debtSec>
+      </invstOrSec>
+      <invstOrSec>
+        <name>TEST ST VRDN</name><title>TEST ST VRDN</title>
+        <cusip>000000BB2</cusip><balance>500000</balance><units>PA</units><curCd>USD</curCd>
+        <valUSD>500000</valUSD><pctVal>0.5</pctVal><payoffProfile>Long</payoffProfile>
+        <assetCat>DBT</assetCat><issuerCat>MUN</issuerCat><invCountry>US</invCountry>
+        <debtSec><maturityDt>2045-01-01</maturityDt><couponKind>Variable</couponKind><annualizedRt>2.1</annualizedRt>
+          <isDefault>N</isDefault></debtSec>
+      </invstOrSec>
+    </invstOrSecs>
+  </formData>
+</edgarSubmission>
